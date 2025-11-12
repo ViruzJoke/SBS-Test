@@ -1381,6 +1381,18 @@
                     });
                 }
             }
+            if (currentStep === 5) {
+                const docUploader = document.getElementById('doc-uploader');
+                const dropZone = document.getElementById('doc-uploader-container').querySelector('label');
+                if (docUploader.required && docUploader.files.length === 0) {
+                    isValid = false;
+                    errorMessage = getTranslatedText('uploadFileError');
+                    if (!firstInvalidElement) firstInvalidElement = docUploader;
+                    dropZone.classList.add('border-red-500'); // Add error class
+                } else {
+                    dropZone.classList.remove('border-red-500'); // Remove error class if valid
+                }
+            }
             if (currentStep === 6) {
                 const pickupEditContainer = document.getElementById('pickup-address-edit-container');
                 if (pickupEditContainer && !pickupEditContainer.classList.contains('hidden')) {
@@ -2001,6 +2013,7 @@
                 docUploaderContainer.classList.add('hidden');
                 uploadedFileView.classList.remove('hidden');
                 formMessage.classList.add('hidden');
+                docUploaderContainer.querySelector('label').classList.remove('border-red-500');
             } else {
                 docUploaderContainer.classList.remove('hidden');
                 uploadedFileView.classList.add('hidden');
