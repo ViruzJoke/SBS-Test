@@ -736,7 +736,7 @@
                 appConfigRes
             ] = await Promise.all([
                 fetch('data/translations.json'),
-                fetch('https://sbs-back.vercel.app/api/address-reference?datasetName=country'),
+                fetch('https://sbs-back-test.vercel.app/api/address-reference?datasetName=country'),
                 fetch('data/currencies.json'),
                 fetch('data/documentTypes.json'),
                 fetch('data/uom.json'),
@@ -2466,7 +2466,7 @@
                     throw new Error("Failed to build shipment payload.");
                 }
 
-                const backendApiUrl = 'https://sbs-back.vercel.app/api/ship';
+                const backendApiUrl = 'https://sbs-back-test.vercel.app/api/ship';
                 
                 const response = await fetch(backendApiUrl, {
                     method: 'POST',
@@ -2595,7 +2595,7 @@
              document.getElementById('use-my-own-invoice-btn').click();
         }
 
-        const backendValidateUrl = 'https://sbs-back.vercel.app/api/validate-address';
+        const backendValidateUrl = 'https://sbs-back-test.vercel.app/api/validate-address';
         let addressDropdown;
 
         function debounce(func, delay) {
