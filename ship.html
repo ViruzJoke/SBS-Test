@@ -388,7 +388,7 @@
                             <label for="insurance-value" class="block text-sm font-medium mb-1" data-i18n="insuredValue"></label>
                             <div class="flex items-center gap-2">
                                 <div class="relative w-full">
-                                    <input type="text" id="insurance-value" class="input-field w-full pr-8">
+                                    <input type="text" id="insurance-value" class="input-field w-full pr-8" disabled>
                                     <span id="insurance-value-indicator" class="input-indicator indicator-required hidden">*</span>
                                 </div>
                                 <span id="insurance-currency" class="font-semibold whitespace-nowrap">THB</span>
@@ -1722,9 +1722,7 @@
                 
                 if (isChecked) {
                     updateSummary();
-                    insuranceInput.disabled = true;
                 } else {
-                    insuranceInput.disabled = false;
                     insuranceInput.value = '';
                 }
             }
