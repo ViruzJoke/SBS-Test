@@ -146,7 +146,7 @@
 		"maxLengthError": "สูงสุด {maxLength} ตัวอักษร",
 		"totalPackagesMaxError": "จำนวนแพ็คเกจรวมต้องไม่เกิน {max}",
 		"savePickupAddressError": "กรุณากด \"บันทึก\" ที่อยู่สำหรับนัดรับสินค้าก่อนไปหน้าถัดไป",
-		"uploadFileError": "คุณยังไม่ได้ upload ไฟล์",
+		"uploadFileError": "คุณยังไม่ได้เลือกไฟล์ที่จะส่ง",
 		"emailInvalid": "รูปแบบอีเมลไม่ถูกต้อง",
 		"contactSupport": "ติดต่อและสอบถาม",
 		"contactUs": "ติดต่อเรา",
@@ -351,4 +351,5 @@
 		}
 	}
 }
+
 
