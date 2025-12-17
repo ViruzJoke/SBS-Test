@@ -47,6 +47,13 @@ Date: 2025-12-17
 1. Asset Update
 - Created `DHL_logo_rgb_red.svg` (Red version of main DHL logo).
 - Replaced all `_rgb_black.svg` icon references with `_rgb_red.svg` across all pages.
+- Switched Pickup Yes/No icons to Red versions `_rgb_red.svg`.
+
+Log Update: Create Shipment Button Style
+Date: 2025-12-17
+- Updated "Create Shipment" button on `index.html` to have White Background, Black Text, and Black Border.
+- Kept Icon as Red (`parcel_rgb_red.svg`).
+- Refinement: Removed Black Border, updated to use Shadow effect (via default class) for cleaner look.
 
 2. Button Style Enforcement
 - Enforced Red Text (#D40511) on all Yellow Background buttons (Standard and Active States).
