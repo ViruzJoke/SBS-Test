@@ -34,11 +34,22 @@ body {
     margin: 0;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
-main { flex-grow: 1; padding: 1rem; }
-.container { max-width: 1280px; margin-left: auto; margin-right: auto; padding: 0 1rem; }
+
+main {
+    flex-grow: 1;
+    padding: 1rem;
+}
+
+.container {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem;
+}
 
 /* --- Form Elements & Buttons --- */
-.input-field, textarea.input-field {
+.input-field,
+textarea.input-field {
     width: 100%;
     padding: 0.75rem 1rem;
     border: 1px solid #d1d5db;
@@ -46,11 +57,14 @@ main { flex-grow: 1; padding: 1rem; }
     background-color: #fff;
     transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, color 0.3s ease;
 }
-.input-field:focus, textarea.input-field:focus {
+
+.input-field:focus,
+textarea.input-field:focus {
     outline: none;
     border-color: #D40511;
     box-shadow: 0 0 0 3px rgba(212, 5, 17, 0.2);
 }
+
 .btn-primary {
     display: inline-flex;
     align-items: center;
@@ -63,77 +77,155 @@ main { flex-grow: 1; padding: 1rem; }
     cursor: pointer;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
-.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
-.btn-red { background-color: #D40511; color: white; }
-.btn-red:hover:not(:disabled) { background-color: #AB000D; transform: translateY(-1px); }
-.btn-yellow { background-color: #FFCC00; color: #D40511; font-weight: 800; }
-.btn-yellow:hover:not(:disabled) { background-color: #e6b800; transform: translateY(-1px); }
-.btn-gray { background-color: #e5e7eb; color: #1f2937; }
-.btn-gray:hover:not(:disabled) { background-color: #d1d5db; transform: translateY(-1px); }
-.utility-button {
+
+.btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-red {
+    background-color: #D40511;
+    color: white;
+}
+
+.btn-red:hover:not(:disabled) {
+    background-color: #AB000D;
+    transform: translateY(-1px);
+}
+
+.btn-yellow {
+    background-color: #FFCC00;
+    color: #D40511;
+    font-weight: 800;
+}
+
+.btn-yellow:hover:not(:disabled) {
+    background-color: #e6b800;
+    transform: translateY(-1px);
+}
+
+.btn-gray {
     background-color: #e5e7eb;
-    color: #374151;
+    color: #1f2937;
+}
+
+.btn-gray:hover:not(:disabled) {
+    background-color: #d1d5db;
+    transform: translateY(-1px);
+}
+
+.utility-button {
+    background-color: rgba(255, 255, 255, 0.4);
+    color: #D40511;
     padding: 0.5rem;
     border-radius: 0.375rem;
     transition: background-color 0.2s, color 0.2s;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-weight: bold;
 }
-.utility-button:hover { background-color: #d1d5db; }
+
+.utility-button:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.dark-mode .utility-button {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #FFCC00;
+}
+
+.dark-mode .utility-button:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+}
 
 /* --- Components --- */
-.hidden-page, .hidden, .ship-now-step.hidden { display: none; }
-header, footer { width: 100%; z-index: 10; }
+.hidden-page,
+.hidden,
+.ship-now-step.hidden {
+    display: none;
+}
+
+header,
+footer {
+    width: 100%;
+    z-index: 10;
+}
+
 .card {
     background-color: #ffffff;
     border-radius: 0.75rem;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
     padding: 1.5rem;
 }
-@media (min-width: 640px) { .card { padding: 2rem; } }
 
-.main-action-button { 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: center; 
-    flex: 1;
-    padding: 2rem; 
-    border-radius: 0.75rem; 
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); 
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; 
-    cursor: pointer; 
-    border: none; 
-    min-height: 10rem; 
-    text-decoration: none; 
+@media (min-width: 640px) {
+    .card {
+        padding: 2rem;
+    }
 }
-.main-action-button:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
-.main-action-button svg { width: 3.5rem; height: 3.5rem; margin-bottom: 0.75rem; }
-.main-action-button span { font-size: 1.25rem; font-weight: 600; text-align: center; line-height: 1.3; }
+
+.main-action-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    cursor: pointer;
+    border: none;
+    min-height: 10rem;
+    text-decoration: none;
+}
+
+.main-action-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.main-action-button svg {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.main-action-button span {
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.3;
+}
 
 /* --- Progress Bar --- */
-.progress-bar::before, .progress-line-fill { 
+.progress-bar::before,
+.progress-line-fill {
     display: none;
 }
-.progress-bar { 
-    display: flex; 
-    justify-content: space-between; 
+
+.progress-bar {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem; 
-    position: relative; 
+    margin-bottom: 2rem;
+    position: relative;
 }
-.progress-step { 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    position: relative; 
-    z-index: 2; 
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
     flex: 0 1 auto;
 }
+
 .progress-step.is-complete {
     cursor: pointer;
 }
+
 .progress-separator {
     font-size: 1.25rem;
     font-weight: bold;
@@ -142,67 +234,164 @@ header, footer { width: 100%; z-index: 10; }
     text-align: center;
     transition: color 0.4s ease;
 }
+
 .progress-separator.is-complete {
     color: #FFCC00;
 }
-.step-circle { 
-    width: 2.5rem; 
-    height: 2.5rem; 
-    border-radius: 50%; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-weight: bold; 
-    border: 2px solid #d1d5db; 
-    background-color: #fff; 
-    color: #6b7280; 
-    transition: all 0.4s ease; 
+
+.step-circle {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border: 2px solid #d1d5db;
+    background-color: #fff;
+    color: #6b7280;
+    transition: all 0.4s ease;
     flex-shrink: 0;
 }
-.step-text { 
-    font-size: 0.75rem; 
-    margin-top: 0.5rem; 
-    text-align: center; 
-    transition: color 0.4s ease; 
+
+.step-text {
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+    text-align: center;
+    transition: color 0.4s ease;
     white-space: nowrap;
     line-height: 1.2;
 }
-.progress-step.is-active .step-circle { background-color: #D40511; border-color: #D40511; color: white; }
-.progress-step.is-active .step-text { color: #D40511; font-weight: 600; }
-.progress-step.is-complete .step-circle { background-color: #10B981; border-color: #10B981; color: white; }
-.progress-step.is-complete .step-text { color: #4b5563; }
-.progress-step .step-number { display: block; }
-.progress-step .step-check { display: none; width: 1.5rem; height: 1.5rem; }
-.progress-step.is-complete .step-number { display: none; }
-.progress-step.is-complete .step-check { display: block; }
+
+.progress-step.is-active .step-circle {
+    background-color: #D40511;
+    border-color: #D40511;
+    color: white;
+}
+
+.progress-step.is-active .step-text {
+    color: #D40511;
+    font-weight: 600;
+}
+
+.progress-step.is-complete .step-circle {
+    background-color: #10B981;
+    border-color: #10B981;
+    color: white;
+}
+
+.progress-step.is-complete .step-text {
+    color: #4b5563;
+}
+
+.progress-step .step-number {
+    display: block;
+}
+
+.progress-step .step-check {
+    display: none;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.progress-step.is-complete .step-number {
+    display: none;
+}
+
+.progress-step.is-complete .step-check {
+    display: block;
+}
 
 /* --- Dark Mode --- */
-body.dark-mode { background-color: #111827; color: #d1d5db; }
-body.dark-mode header, body.dark-mode .card { background-color: #1f2937; border-color: #374151; }
-body.dark-mode .text-gray-800, body.dark-mode .text-gray-700, body.dark-mode .text-gray-600, body.dark-mode .text-black, body.dark-mode label { color: #d1d5db; }
-body.dark-mode .input-field { background-color: #374151; color: #d1d5db; border-color: #4b5563; }
-body.dark-mode .input-field:focus { border-color: #FFCC00; }
-body.dark-mode .utility-button, body.dark-mode .btn-gray { background-color: #374151; color: #e5e7eb; }
-body.dark-mode .utility-button:hover, body.dark-mode .btn-gray:hover:not(:disabled) { background-color: #4b5563; }
-body.dark-mode .btn-yellow { background-color: #FFCC00; color: #D40511; }
-body.dark-mode .bg-yellow-50 { background-color: #1f2937; border-color: #4b5563; }
-body.dark-mode .package-piece-item, body.dark-mode .line-item { background-color: #2b374d; border-color: #4b5563; }
-body.dark-mode .step-circle { border-color: #4b5563; background-color: #1f2937; color: #9ca3af; }
-body.dark-mode .progress-step.is-active .step-text { color: #f87171; }
-body.dark-mode .progress-step.is-complete .step-text { color: #d1d5db; }
-body.dark-mode .progress-step.is-complete .step-circle { background-color: #10B981; border-color: #10B981; }
+body.dark-mode {
+    background-color: #111827;
+    color: #d1d5db;
+}
+
+body.dark-mode header,
+body.dark-mode .card {
+    background-color: #1f2937;
+    border-color: #374151;
+}
+
+body.dark-mode .text-gray-800,
+body.dark-mode .text-gray-700,
+body.dark-mode .text-gray-600,
+body.dark-mode .text-black,
+body.dark-mode label {
+    color: #d1d5db;
+}
+
+body.dark-mode .input-field {
+    background-color: #374151;
+    color: #d1d5db;
+    border-color: #4b5563;
+}
+
+body.dark-mode .input-field:focus {
+    border-color: #FFCC00;
+}
+
+body.dark-mode .utility-button,
+body.dark-mode .btn-gray {
+    background-color: #374151;
+    color: #e5e7eb;
+}
+
+body.dark-mode .utility-button:hover,
+body.dark-mode .btn-gray:hover:not(:disabled) {
+    background-color: #4b5563;
+}
+
+body.dark-mode .btn-yellow {
+    background-color: #FFCC00;
+    color: #D40511;
+}
+
+body.dark-mode .bg-yellow-50 {
+    background-color: #1f2937;
+    border-color: #4b5563;
+}
+
+body.dark-mode .package-piece-item,
+body.dark-mode .line-item {
+    background-color: #2b374d;
+    border-color: #4b5563;
+}
+
+body.dark-mode .step-circle {
+    border-color: #4b5563;
+    background-color: #1f2937;
+    color: #9ca3af;
+}
+
+body.dark-mode .progress-step.is-active .step-text {
+    color: #f87171;
+}
+
+body.dark-mode .progress-step.is-complete .step-text {
+    color: #d1d5db;
+}
+
+body.dark-mode .progress-step.is-complete .step-circle {
+    background-color: #10B981;
+    border-color: #10B981;
+}
 
 /* --- START: Footer Styles --- */
 body:not(.dark-mode) footer {
     background-color: #f3f4f6;
     color: #4b5563;
 }
+
 body:not(.dark-mode) footer h3 {
     color: #1f2937;
 }
+
 body:not(.dark-mode) footer a:hover {
     color: #D40511;
 }
+
 body:not(.dark-mode) footer .border-t {
     border-color: #e5e7eb;
 }
@@ -211,29 +400,35 @@ body.dark-mode footer {
     background-color: #1f2937;
     color: #9ca3af;
 }
+
 body.dark-mode footer h3 {
     color: #ffffff;
 }
+
 body.dark-mode footer a:hover {
     color: #FFCC00;
 }
+
 body.dark-mode footer .border-t {
     border-color: #374151;
 }
+
 /* --- END: Footer Styles --- */
 
 /* --- START: Footer Balance Override (Desktop) --- */
 /* สำหรับหน้าจอขนาด md (768px) ขึ้นไป */
 @media (min-width: 768px) {
+
     /* เลือก grid container ใน footer */
-    footer .container > .grid {
+    footer .container>.grid {
         /* เปลี่ยน layout ให้เป็น 3 คอลัมน์เท่าๆ กัน */
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     /* ซ่อนคอลัมน์ที่ 3 ซึ่งเป็น div ว่างๆ สำหรับเว้นวรรค */
-    footer .container > .grid > div:nth-child(3) {
+    footer .container>.grid>div:nth-child(3) {
         display: none;
     }
 }
+
 /* --- END: Footer Balance Override (Desktop) --- */

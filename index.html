@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
-	<script>
-    if (!sessionStorage.getItem('isRefreshed')) {
-        sessionStorage.setItem('isRefreshed', 'true');
-        location.reload(true);
-    }
-	</script>
+    <script>
+        if (!sessionStorage.getItem('isRefreshed')) {
+            sessionStorage.setItem('isRefreshed', 'true');
+            location.reload(true);
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Shipment Creation Backup Solution (Test Environment)- Home</title>
@@ -28,13 +29,14 @@
         }
     </script>
     <link rel="stylesheet" href="styles.css">
-	<link rel="icon" href="DBS_Icon3.jpg" type="image/jpg">
+    <link rel="icon" href="DBS_Icon3.jpg" type="image/jpg">
     <style>
         .is-disabled {
             opacity: 0.5;
             pointer-events: none;
             cursor: not-allowed;
         }
+
         .tracking-error-box {
             background-color: #fef2f2;
             border: 1px solid #fecaca;
@@ -42,44 +44,67 @@
             padding: 1rem;
             margin-bottom: 1rem;
         }
+
         .dark-mode .tracking-error-box {
             background-color: #451a1a;
             border-color: #991b1b;
         }
+
         #terms-modal-content {
-             max-height: 70vh;
+            max-height: 70vh;
         }
+
         #close-terms-btn {
             font-size: 2rem;
             line-height: 1;
         }
     </style>
 </head>
+
 <body class="with-faded-bg">
-    <header class="bg-white shadow-md py-4 px-6 md:px-10 flex justify-between items-center relative z-10 rounded-b-xl">
+    <header class="bg-dhl-yellow shadow-sm py-4 px-6 md:px-10 flex justify-between items-center relative z-10 w-full">
         <a href="index.html" class="flex items-center gap-3">
             <img src="DHL_logo_rgb_black.svg" alt="DHL Logo" class="h-8 md:h-10">
-            <span class="text-xl md:text-2xl font-black text-dhl-red uppercase tracking-tighter" style="font-family: 'Frutiger', 'Arial', sans-serif;">Backup Solution</span>
+            <span class="text-xl md:text-2xl font-black text-dhl-red uppercase tracking-tighter"
+                style="font-family: 'Frutiger', 'Arial', sans-serif;">Backup Solution</span>
         </a>
-        
+
         <!-- Desktop Nav -->
         <nav class="hidden sm:flex items-center space-x-2 sm:space-x-4">
             <div class="relative">
-                <button id="language-toggle-button" class="utility-button px-4 py-2 flex items-center gap-2"><span id="current-language-display"></span><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
-                <div id="language-dropdown" class="language-dropdown absolute right-0 mt-2 w-28 bg-white rounded-md shadow-lg hidden z-20">
-                    <a href="#" class="block px-4 py-2" data-lang="th">ภาษาไทย</a><a href="#" class="block px-4 py-2" data-lang="en">English</a>
+                <button id="language-toggle-button" class="utility-button px-4 py-2 flex items-center gap-2"><span
+                        id="current-language-display"></span><svg class="w-4 h-4" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg></button>
+                <div id="language-dropdown"
+                    class="language-dropdown absolute right-0 mt-2 w-28 bg-white rounded-md shadow-lg hidden z-20">
+                    <a href="#" class="block px-4 py-2" data-lang="th">ภาษาไทย</a><a href="#" class="block px-4 py-2"
+                        data-lang="en">English</a>
                 </div>
             </div>
             <button id="theme-toggle" class="utility-button">
-                <svg id="theme-icon-light" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                <svg id="theme-icon-dark" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                <svg id="theme-icon-light" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                    </path>
+                </svg>
+                <svg id="theme-icon-dark" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                    </path>
+                </svg>
             </button>
         </nav>
 
         <!-- Mobile Nav Button -->
         <div class="sm:hidden">
             <button id="mobile-menu-button" class="utility-button p-2">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                    </path>
+                </svg>
             </button>
         </div>
     </header>
@@ -87,32 +112,50 @@
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden fixed inset-0 z-40">
         <div class="fixed inset-0 bg-black bg-opacity-50" aria-hidden="true"></div>
-        <div id="mobile-menu-content" class="fixed top-0 right-0 w-64 h-full bg-yellow-50 dark:bg-gray-800 shadow-lg p-6 z-50 transform translate-x-full transition-transform duration-300 ease-in-out">
+        <div id="mobile-menu-content"
+            class="fixed top-0 right-0 w-64 h-full bg-yellow-50 dark:bg-gray-800 shadow-lg p-6 z-50 transform translate-x-full transition-transform duration-300 ease-in-out">
             <div class="flex justify-between items-center mb-8">
                 <h2 class="text-xl font-bold" data-i18n="menu"></h2>
-                <button id="mobile-menu-close-button" class="text-gray-500 hover:text-gray-800 dark:hover:text-white text-3xl">&times;</button>
+                <button id="mobile-menu-close-button"
+                    class="text-gray-500 hover:text-gray-800 dark:hover:text-white text-3xl">&times;</button>
             </div>
             <nav class="flex flex-col space-y-4">
                 <div class="relative">
-                    <button id="mobile-language-toggle-button" class="w-full utility-button px-4 py-2 flex items-center justify-between gap-2">
+                    <button id="mobile-language-toggle-button"
+                        class="w-full utility-button px-4 py-2 flex items-center justify-between gap-2">
                         <span id="mobile-current-language-display"></span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
                     </button>
-                    <div id="mobile-language-dropdown" class="language-dropdown absolute right-0 mt-2 w-full bg-white rounded-md shadow-lg hidden z-20">
+                    <div id="mobile-language-dropdown"
+                        class="language-dropdown absolute right-0 mt-2 w-full bg-white rounded-md shadow-lg hidden z-20">
                         <a href="#" class="block px-4 py-2" data-lang="th">ภาษาไทย</a>
                         <a href="#" class="block px-4 py-2" data-lang="en">English</a>
                     </div>
                 </div>
-                <button id="mobile-theme-toggle" class="w-full utility-button px-4 py-2 flex items-center justify-center gap-2">
-                    <svg id="mobile-theme-icon-light" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                    <svg id="mobile-theme-icon-dark" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                <button id="mobile-theme-toggle"
+                    class="w-full utility-button px-4 py-2 flex items-center justify-center gap-2">
+                    <svg id="mobile-theme-icon-light" class="w-6 h-6" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                        </path>
+                    </svg>
+                    <svg id="mobile-theme-icon-dark" class="w-6 h-6 hidden" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                        </path>
+                    </svg>
                 </button>
             </nav>
         </div>
     </div>
 
     <main class="container py-8">
-        <section id="corporate-page">			
+        <section id="corporate-page">
             <section id="contact-info-section" class="card my-8 text-center">
                 <h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-dhl-red" data-i18n="emergencyOnlyTitle"></h2>
                 <p class="text-gray-700 max-w-2xl mx-auto" data-i18n="emergencySystemMessage"></p>
@@ -120,17 +163,22 @@
             <section class="card my-8">
                 <h2 class="text-3xl font-extrabold text-center text-gray-800 mb-8" data-i18n="gettingStartedTitle"></h2>
                 <div class="mt-2 text-center max-w-4xl mx-auto">
-                    <div class="flex items-start justify-start gap-3 p-4 border rounded-md bg-yellow-50 border-yellow-200">
-                        <input type="checkbox" id="consent-checkbox" class="h-5 w-5 rounded text-dhl-red focus:ring-red-500 border-gray-300 flex-shrink-0 mt-0.5">
+                    <div
+                        class="flex items-start justify-start gap-3 p-4 border rounded-md bg-yellow-50 border-yellow-200">
+                        <input type="checkbox" id="consent-checkbox"
+                            class="h-5 w-5 rounded text-dhl-red focus:ring-red-500 border-gray-300 flex-shrink-0 mt-0.5">
                         <label for="consent-checkbox" class="text-sm text-gray-800 text-left">
                             <span data-i18n="consentTextPart1"></span>
-                            <button type="button" id="open-terms-btn" class="text-dhl-red underline font-semibold hover:opacity-80" data-i18n="consentLinkText"></button>
+                            <button type="button" id="open-terms-btn"
+                                class="text-dhl-red underline font-semibold hover:opacity-80"
+                                data-i18n="consentLinkText"></button>
                             <span data-i18n="consentTextPart2"></span>
                         </label>
                     </div>
                 </div>
                 <div class="flex justify-center mt-6 max-w-xs mx-auto">
-                    <a href="ship.html" id="create-shipment-btn" class="main-action-button bg-yellow-500 text-black hover:bg-yellow-600 is-disabled">
+                    <a href="ship.html" id="create-shipment-btn"
+                        class="main-action-button bg-yellow-500 text-black hover:bg-yellow-600 is-disabled">
                         <img src="Icon/parcel_rgb_black.svg" alt="Parcel Logo" class="h-12 mb-5">
                         <span data-i18n="createShipment"></span>
                     </a>
@@ -138,11 +186,11 @@
             </section>
         </section>
     </main>
-    
+
     <div id="terms-modal" class="fixed inset-0 bg-black bg-opacity-60 z-50 hidden flex items-center justify-center p-4">
         <div class="bg-yellow-50 rounded-lg shadow-xl w-full max-w-4xl flex flex-col">
             <div class="flex justify-between items-center p-4 border-b border-yellow-200 flex-shrink-0">
-                
+
                 <button id="close-terms-btn" class="text-gray-500 hover:text-gray-800">&times;</button>
             </div>
             <div id="terms-modal-content" class="p-6 overflow-y-auto">
@@ -151,32 +199,39 @@
         </div>
     </div>
 
-    <footer>
+    <footer class="bg-[#333333] text-white py-8 mt-8">
         <div class="container mx-auto px-6 py-12">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
                 <div class="text-center md:text-left">
                     <h3 class="font-semibold mb-4 uppercase" data-i18n="contactSupport"></h3>
                     <ul class="space-y-2">
-                        <li><a data-i18n-link="contactUs" target="_blank" class="text-sm" data-i18n="contactUs"></a></li>
+                        <li><a data-i18n-link="contactUs" target="_blank" class="text-sm" data-i18n="contactUs"></a>
+                        </li>
                     </ul>
                 </div>
 
                 <div class="text-center md:text-left">
                     <h3 class="font-semibold mb-4 uppercase" data-i18n="legal"></h3>
                     <ul class="space-y-2">
-                        <li><a data-i18n-link="termsOfUse" target="_blank" class="text-sm" data-i18n="termsOfUse"></a></li>
-                        <li><a data-i18n-link="privacyNotice" target="_blank" class="text-sm" data-i18n="privacyNotice"></a></li>
-                        <li><a data-i18n-link="fraudAwareness" target="_blank" class="text-sm" data-i18n="fraudAwareness"></a></li>
-                        <li><a data-i18n-link="legalNotice" target="_blank" class="text-sm" data-i18n="legalNotice"></a></li>
+                        <li><a data-i18n-link="termsOfUse" target="_blank" class="text-sm" data-i18n="termsOfUse"></a>
+                        </li>
+                        <li><a data-i18n-link="privacyNotice" target="_blank" class="text-sm"
+                                data-i18n="privacyNotice"></a></li>
+                        <li><a data-i18n-link="fraudAwareness" target="_blank" class="text-sm"
+                                data-i18n="fraudAwareness"></a></li>
+                        <li><a data-i18n-link="legalNotice" target="_blank" class="text-sm" data-i18n="legalNotice"></a>
+                        </li>
                     </ul>
                 </div>
 
                 <div class="hidden md:block"></div>
 
-                <div class="col-span-2 md:col-span-1 text-center md:text-left flex flex-col items-center md:items-start">
+                <div
+                    class="col-span-2 md:col-span-1 text-center md:text-left flex flex-col items-center md:items-start">
                     <img src="DHL_logo_rgb_black.svg" alt="DHL Group Logo" class="h-6 mb-5">
                     <ul class="space-y-2">
-                        <li><a data-i18n-link="dhlExpress" target="_blank" class="text-sm" data-i18n="dhlExpress"></a></li>
+                        <li><a data-i18n-link="dhlExpress" target="_blank" class="text-sm" data-i18n="dhlExpress"></a>
+                        </li>
                         <li><a data-i18n-link="aboutDhl" target="_blank" class="text-sm" data-i18n="aboutDhl"></a></li>
                         <li><a data-i18n-link="press" target="_blank" class="text-sm" data-i18n="press"></a></li>
                     </ul>
@@ -192,13 +247,13 @@
         document.addEventListener('DOMContentLoaded', () => {
             sessionStorage.removeItem('termsAccepted');
 
-            const translations = { 
-                'th': { 
-                    'homepage': 'หน้าหลัก', 'gettingStartedTitle': 'เริ่มต้นใช้งาน', 'createShipment': 'สร้างใบนำส่ง', 
-                    'allRightsReserved': 'สงวนลิขสิทธิ์.', 'emergencyOnlyTitle': 'เฉพาะกรณีฉุกเฉิน', 
-                    'emergencySystemMessage': 'ระบบนี้จะถูกเปิดใช้งานในกรณีที่ระบบ MyDHL+ ไม่สามารถใช้งานได้เท่านั้น หากระบบ MyDHL+ สามารถกลับมาใช้งานได้ปกติแล้ว ระบบนี้จะถูกระงับใช้ภายใน 30 นาที ขอบคุณที่ใช้บริการ DHL Express', 
-                    'backToMain': 'กลับหน้าหลัก', 
-                    'consentTextPart1': 'ข้าพเจ้ายืนยันว่าได้อ่าน ', 
+            const translations = {
+                'th': {
+                    'homepage': 'หน้าหลัก', 'gettingStartedTitle': 'เริ่มต้นใช้งาน', 'createShipment': 'สร้างใบนำส่ง',
+                    'allRightsReserved': 'สงวนลิขสิทธิ์.', 'emergencyOnlyTitle': 'เฉพาะกรณีฉุกเฉิน',
+                    'emergencySystemMessage': 'ระบบนี้จะถูกเปิดใช้งานในกรณีที่ระบบ MyDHL+ ไม่สามารถใช้งานได้เท่านั้น หากระบบ MyDHL+ สามารถกลับมาใช้งานได้ปกติแล้ว ระบบนี้จะถูกระงับใช้ภายใน 30 นาที ขอบคุณที่ใช้บริการ DHL Express',
+                    'backToMain': 'กลับหน้าหลัก',
+                    'consentTextPart1': 'ข้าพเจ้ายืนยันว่าได้อ่าน ',
                     'consentLinkText': 'ข้อกำหนดการใช้บริการออนไลน์ของ DHL Express',
                     'consentTextPart2': ' และยอมรับเนื้อหาดังกล่าวแล้ว',
                     'termsTitle': 'ข้อกำหนดการใช้บริการ',
@@ -224,12 +279,12 @@
                         'aboutDhl': 'https://www.dhl.com/th-th/home/about-us.html',
                         'press': 'https://www.dhl.com/th-th/home/press.html'
                     }
-                }, 
-                'en': { 
-                    'homepage': 'Home', 'gettingStartedTitle': 'Get Started', 'createShipment': 'Create Shipment', 
-                    'allRightsReserved': 'All rights reserved.', 'emergencyOnlyTitle': 'FOR EMERGENCY ONLY', 
-                    'emergencySystemMessage': 'This system will be activated only if the MyDHL+ system is unavailable. If MyDHL+ system becomes operational again, this system will be temporarily suspended within 30 minutes. Thank you for using DHL Express.', 
-                    'backToMain': 'Back to Main', 
+                },
+                'en': {
+                    'homepage': 'Home', 'gettingStartedTitle': 'Get Started', 'createShipment': 'Create Shipment',
+                    'allRightsReserved': 'All rights reserved.', 'emergencyOnlyTitle': 'FOR EMERGENCY ONLY',
+                    'emergencySystemMessage': 'This system will be activated only if the MyDHL+ system is unavailable. If MyDHL+ system becomes operational again, this system will be temporarily suspended within 30 minutes. Thank you for using DHL Express.',
+                    'backToMain': 'Back to Main',
                     'consentTextPart1': 'I hereby confirm that I have read the ',
                     'consentLinkText': 'DHL Express Online Services Terms of Use',
                     'consentTextPart2': ' and accept the content thereof.',
@@ -256,12 +311,12 @@
                         'aboutDhl': 'https://www.dhl.com/th-en/home/about-us.html',
                         'press': 'https://www.dhl.com/th-en/home/press.html'
                     }
-                } 
+                }
             };
-            let currentLanguage = localStorage.getItem('language') || 'en'; 
-            
+            let currentLanguage = localStorage.getItem('language') || 'en';
+
             function getTranslatedText(key) { return translations[currentLanguage]?.[key] || key; }
-            
+
             function updateContentLanguage() {
                 document.querySelectorAll('[data-i18n]').forEach(el => {
                     const key = el.getAttribute('data-i18n');
@@ -286,7 +341,7 @@
                     const key = label.getAttribute('data-i18n');
                     const asterisk = label.querySelector('.text-red-500');
                     if (key !== 'invoiceNumber' && key !== 'summarizeShipment') {
-                    label.innerHTML = getTranslatedText(key) + (asterisk ? ' <span class="text-red-500">*</span>' : '');
+                        label.innerHTML = getTranslatedText(key) + (asterisk ? ' <span class="text-red-500">*</span>' : '');
                     } else if (key === 'summarizeShipment') {
                         label.innerHTML = `
                             <span data-i18n="summarizeShipment">${getTranslatedText('summarizeShipment')}</span>
@@ -294,72 +349,72 @@
                         `;
                     }
                     else {
-                    label.innerHTML = getTranslatedText(key);
+                        label.innerHTML = getTranslatedText(key);
                     }
                 });
                 const langDisplay = document.getElementById('current-language-display');
                 const mobileLangDisplay = document.getElementById('mobile-current-language-display');
-                if(langDisplay) langDisplay.textContent = currentLanguage.toUpperCase();
-                if(mobileLangDisplay) mobileLangDisplay.textContent = currentLanguage.toUpperCase();
+                if (langDisplay) langDisplay.textContent = currentLanguage.toUpperCase();
+                if (mobileLangDisplay) mobileLangDisplay.textContent = currentLanguage.toUpperCase();
 
                 document.title = `DHL Backup Solution - ${getTranslatedText('createShipment')}`;
                 document.querySelectorAll('.line-item-summary strong[data-i18n]').forEach(el => {
                     el.textContent = getTranslatedText(el.getAttribute('data-i18n'));
                 });
             }
-            
-            function setupTheme() { 
+
+            function setupTheme() {
                 const themeToggles = [document.getElementById('theme-toggle'), document.getElementById('mobile-theme-toggle')];
-                const lightIcon = document.getElementById('theme-icon-light'); 
+                const lightIcon = document.getElementById('theme-icon-light');
                 const darkIcon = document.getElementById('theme-icon-dark');
                 const mobileLightIcon = document.getElementById('mobile-theme-icon-light');
                 const mobileDarkIcon = document.getElementById('mobile-theme-icon-dark');
 
-                const enableDarkMode = () => { 
-                    document.body.classList.add('dark-mode'); 
-                    localStorage.setItem('theme', 'dark'); 
-                    if (lightIcon) lightIcon.classList.add('hidden'); 
-                    if (darkIcon) darkIcon.classList.remove('hidden'); 
+                const enableDarkMode = () => {
+                    document.body.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark');
+                    if (lightIcon) lightIcon.classList.add('hidden');
+                    if (darkIcon) darkIcon.classList.remove('hidden');
                     if (mobileLightIcon) mobileLightIcon.classList.add('hidden');
                     if (mobileDarkIcon) mobileDarkIcon.classList.remove('hidden');
-                }; 
-                const disableDarkMode = () => { 
-                    document.body.classList.remove('dark-mode'); 
-                    localStorage.setItem('theme', 'light'); 
-                    if (lightIcon) lightIcon.classList.remove('hidden'); 
-                    if (darkIcon) darkIcon.classList.add('hidden'); 
+                };
+                const disableDarkMode = () => {
+                    document.body.classList.remove('dark-mode');
+                    localStorage.setItem('theme', 'light');
+                    if (lightIcon) lightIcon.classList.remove('hidden');
+                    if (darkIcon) darkIcon.classList.add('hidden');
                     if (mobileLightIcon) mobileLightIcon.classList.remove('hidden');
                     if (mobileDarkIcon) mobileDarkIcon.classList.add('hidden');
-                }; 
+                };
                 const toggle = () => document.body.classList.contains('dark-mode') ? disableDarkMode() : enableDarkMode();
                 themeToggles.forEach(btn => btn && btn.addEventListener('click', toggle));
 
                 if (localStorage.getItem('theme') === 'dark') {
-				    enableDarkMode();
-				} else {
-				    disableDarkMode();
-				}
+                    enableDarkMode();
+                } else {
+                    disableDarkMode();
+                }
             }
 
-            function setupLanguageSwitch() { 
+            function setupLanguageSwitch() {
                 const desktopBtn = document.getElementById('language-toggle-button');
                 const mobileBtn = document.getElementById('mobile-language-toggle-button');
                 const desktopDropdown = document.getElementById('language-dropdown');
                 const mobileDropdown = document.getElementById('mobile-language-dropdown');
 
-                if(desktopBtn) desktopBtn.addEventListener('click', () => desktopDropdown.classList.toggle('hidden')); 
-                if(mobileBtn) mobileBtn.addEventListener('click', () => mobileDropdown.classList.toggle('hidden')); 
+                if (desktopBtn) desktopBtn.addEventListener('click', () => desktopDropdown.classList.toggle('hidden'));
+                if (mobileBtn) mobileBtn.addEventListener('click', () => mobileDropdown.classList.toggle('hidden'));
 
-                document.querySelectorAll('[data-lang]').forEach(link => { 
-                    link.addEventListener('click', (e) => { 
-                        e.preventDefault(); 
-                        currentLanguage = e.target.dataset.lang; 
-                        localStorage.setItem('language', currentLanguage); 
-                        updateContentLanguage(); 
-                        if(desktopDropdown) desktopDropdown.classList.add('hidden'); 
-                        if(mobileDropdown) mobileDropdown.classList.add('hidden'); 
-                    }); 
-                }); 
+                document.querySelectorAll('[data-lang]').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        currentLanguage = e.target.dataset.lang;
+                        localStorage.setItem('language', currentLanguage);
+                        updateContentLanguage();
+                        if (desktopDropdown) desktopDropdown.classList.add('hidden');
+                        if (mobileDropdown) mobileDropdown.classList.add('hidden');
+                    });
+                });
             }
 
             function setupMobileMenu() {
@@ -377,7 +432,7 @@
                 closeBtn.addEventListener('click', closeMenu);
                 mobileMenu.addEventListener('click', (e) => { if (e.target === mobileMenu) closeMenu(); });
             }
-            
+
             const consentCheckbox = document.getElementById('consent-checkbox');
             const createShipmentBtn = document.getElementById('create-shipment-btn');
             const termsModal = document.getElementById('terms-modal');
@@ -400,7 +455,7 @@
             consentCheckbox.addEventListener('change', () => {
                 const isChecked = consentCheckbox.checked;
                 toggleCreateButton(isChecked);
-                
+
                 if (isChecked) {
                     sessionStorage.setItem('termsAccepted', 'true');
                 } else {
@@ -438,7 +493,7 @@
                             if (e.target.id === 'accept-terms-btn-en' || e.target.id === 'accept-terms-btn-th') {
                                 const consentCheckbox = document.getElementById('consent-checkbox');
                                 consentCheckbox.checked = true;
-                                
+
                                 const changeEvent = new Event('change');
                                 consentCheckbox.dispatchEvent(changeEvent);
 
@@ -454,7 +509,7 @@
             closeTermsBtn.addEventListener('click', () => {
                 termsModal.classList.add('hidden');
             });
-            
+
             termsModal.addEventListener('click', (event) => {
                 if (event.target === termsModal) {
                     termsModal.classList.add('hidden');
@@ -470,4 +525,5 @@
         });
     </script>
 </body>
+
 </html>
