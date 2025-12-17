@@ -2,35 +2,37 @@ Changelog: DHL Express Rebranding
 Date: 2025-12-17
 Project: Shipment Creation Backup Solution
 
-Visual Identity Update (Rebranding)
-Successfully transitioned the application from a generic "Shipment Creation" layout to a fully branded DHL Express interface.
+Log Update: Logo Change
+Replaced the generic black SVG logo with the official DHL_Logo.png for better brand representation.
+
+Detailed Updates:
+
+1. Asset Replacement
+- Old: DHL_logo_rgb_black.svg
+- New: DHL_Logo.png
+- Files Updated: index.html, ship.html, quote.html, confirmation.html
+
+Theme Refinement (DHL.com Style)
+Updated the application theme to closely mirror the official dhl.com website structure.
 
 Key Changes:
 
-1. Color System Update
-- DHL Red (#D40511) replaced standard red-600.
-- DHL Yellow (#FFCC00) replaced standard yellow-400/amber-400.
-- DHL Dark Red (#AB000D) added for hover states.
-- Applied globally via Tailwind CSS configuration in all HTML files.
+1. Header & Navigation Refinement
+- Yellow Header: Changed the header background to full-width DHL Yellow (#FFCC00).
+- Updated Active State: Light Gray Background (#e5e7eb) with Black Text (#000000).
+- Updated Dark Mode Active State: Dark Gray Background (#374151) with White Text (#ffffff).
+- Confirmed Pickup Buttons ("Yes"/"No") match this style and use Black icons.
+- Confirmed Print Size Buttons ("A4"/"Label") also match this style (Shared CSS Class).
+- Layout: Removed rounded corners from the bottom of the header for a cleaner, full-width look.
+- Navigation: Updated utility buttons (Language/Theme toggle) to be transparent with semi-transparent hover states, improving visibility on the yellow background.
 
-2. Header & Navigation
-- Logo Integration: Replaced text-based headers with the official DHL_logo_rgb_black.svg.
-- Typography: Updated header text to use "Frutiger" (with Arial fallback) to match DHL brand guidelines.
-- Layout: Adjusted spacing and alignment to accommodate the new logo structure.
+2. Footer Update
+- Dark Footer: Changed the footer background to Dark Grey (#333333) to match the official corporate footer style.
 
-3. Component Styling (styles.css)
-- Buttons:
-  - btn-red: Updated background color to DHL Red.
-  - btn-yellow: Updated background color to DHL Yellow with DHL Red text (high contrast).
-- Progress Steps: Active steps now use the official DHL Red.
-- Form Elements: Focus states for input fields now use DHL Red.
-- Dark Mode: Calibrated colors to ensure readability while maintaining brand identity (using DHL Yellow for accents in dark mode).
-
-4. File-Specific Updates
-- index.html: Updated landing page branding and "Consent" checkbox colors.
-- ship.html: Updated multi-step form progress indicators, "Next/Back" buttons, and checkbox accents.
-- quote.html: Updated "Get Quote" buttons and loading spinners.
-- confirmation.html: Updated success messages, AWB display, and download buttons.
+3. Core Branding (Completed Previously)
+- Visual Identity: Full transition to DHL official colors (Red/Yellow).
+- Logo: Integration of the DHL logo across all pages.
+- Components: Standardized buttons, progress bars, and form inputs.
 
 Verified Files:
 - index.html
@@ -38,3 +40,23 @@ Verified Files:
 - quote.html
 - confirmation.html
 - styles.css
+
+Log Update: UI Modernization (Red Icons & Button Text)
+Date: 2025-12-17
+
+1. Asset Update
+- Created `DHL_logo_rgb_red.svg` (Red version of main DHL logo).
+- Replaced all `_rgb_black.svg` icon references with `_rgb_red.svg` across all pages.
+
+2. Button Style Enforcement
+- Enforced Red Text (#D40511) on all Yellow Background buttons (Standard and Active States).
+- Enforced White Text on Red Background buttons.
+- Updated `styles.css` and `ship.html` specific overrides to ensure consistency in Light and Dark modes.
+
+Verified Files:
+- index.html
+- ship.html
+- confirmation.html
+- quote.html
+- styles.css
+
