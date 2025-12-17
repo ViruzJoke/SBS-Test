@@ -1,28 +1,103 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DHL Backup Solution - Quote</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dhl-red': '#D40511',
+                        'dhl-yellow': '#FFCC00',
+                        'dhl-dark-red': '#AB000D',
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="styles.css">
-	<link rel="icon" href="DBS_Icon2.jpg" type="image/jpg">
+    <link rel="icon" href="DBS_Icon2.jpg" type="image/jpg">
     <style>
         /* สไตล์สำหรับตารางผลลัพธ์ */
-        .results-table { border-collapse: collapse; width: 100%; margin-top: 1rem; }
-        .results-table th, .results-table td { border: 1px solid #d1d5db; padding: 0.75rem; text-align: left; }
-        .results-table th { background-color: #f3f4f6; font-weight: 600; }
-        .results-table .expand-btn { cursor: pointer; width: 2rem; height: 2rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; background-color: #e5e7eb; transition: transform 0.2s; }
-        .results-table .expand-btn.expanded { transform: rotate(45deg); }
-        .breakdown-row { display: none; }
-        .breakdown-row.visible { display: table-row; }
-        .breakdown-cell { padding: 0 !important; }
-        .breakdown-table { width: 100%; }
-        .breakdown-table th, .breakdown-table td { border: none; border-top: 1px solid #d1d5db; background-color: #fafafa; }
-        .dark-mode .results-table th, .dark-mode .results-table td { border-color: #4b5563; }
-        .dark-mode .results-table th { background-color: #374151; }
-        .dark-mode .breakdown-table th, .dark-mode .breakdown-table td { background-color: #1f2937; border-color: #4b5563;}
-        .dark-mode .results-table .expand-btn { background-color: #4b5563; }
+        .results-table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .results-table th,
+        .results-table td {
+            border: 1px solid #d1d5db;
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        .results-table th {
+            background-color: #f3f4f6;
+            font-weight: 600;
+        }
+
+        .results-table .expand-btn {
+            cursor: pointer;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #e5e7eb;
+            transition: transform 0.2s;
+        }
+
+        .results-table .expand-btn.expanded {
+            transform: rotate(45deg);
+        }
+
+        .breakdown-row {
+            display: none;
+        }
+
+        .breakdown-row.visible {
+            display: table-row;
+        }
+
+        .breakdown-cell {
+            padding: 0 !important;
+        }
+
+        .breakdown-table {
+            width: 100%;
+        }
+
+        .breakdown-table th,
+        .breakdown-table td {
+            border: none;
+            border-top: 1px solid #d1d5db;
+            background-color: #fafafa;
+        }
+
+        .dark-mode .results-table th,
+        .dark-mode .results-table td {
+            border-color: #4b5563;
+        }
+
+        .dark-mode .results-table th {
+            background-color: #374151;
+        }
+
+        .dark-mode .breakdown-table th,
+        .dark-mode .breakdown-table td {
+            background-color: #1f2937;
+            border-color: #4b5563;
+        }
+
+        .dark-mode .results-table .expand-btn {
+            background-color: #4b5563;
+        }
 
         /* สไตล์สำหรับ Combo Box ประเทศ */
         .country-dropdown {
@@ -33,56 +108,86 @@
             border: 1px solid #d1d5db;
             border-radius: 0.375rem;
             margin-top: 0.25rem;
-            max-height: 15rem; /* 240px */
+            max-height: 15rem;
+            /* 240px */
             overflow-y: auto;
         }
+
         .country-dropdown-item {
             padding: 0.5rem 1rem;
             cursor: pointer;
-            display: flex; 
-            align-items: center; 
+            display: flex;
+            align-items: center;
             gap: 0.75rem;
         }
-        .country-dropdown-item img { 
-            width: 1.25rem; 
-            height: auto; 
-            flex-shrink: 0; 
+
+        .country-dropdown-item img {
+            width: 1.25rem;
+            height: auto;
+            flex-shrink: 0;
         }
+
         .country-dropdown-item:hover {
             background-color: #f3f4f6;
         }
+
         .dark-mode .country-dropdown {
             background-color: #374151;
             border-color: #4b5563;
         }
+
         .dark-mode .country-dropdown-item:hover {
             background-color: #4b5563;
         }
-        
+
         /* Styles for the confirmation modal */
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
+
         #leave-confirm-modal {
             animation: fadeIn 0.2s ease-out;
         }
     </style>
 </head>
+
 <body class="with-faded-bg">
     <header class="bg-white shadow-md py-4 px-6 md:px-10 flex justify-between items-center relative z-10 rounded-b-xl">
-         <a href="index.html" class="flex items-center"><span class="text-4xl font-bold text-red-600">DHL</span><span class="ml-2 text-xl font-semibold text-gray-800  sm:block">Backup Solution</span></a>
+        <a href="index.html" class="flex items-center gap-3">
+            <img src="DHL_logo_rgb_black.svg" alt="DHL Logo" class="h-8 md:h-10">
+            <span class="text-xl md:text-2xl font-black text-dhl-red uppercase tracking-tighter"
+                style="font-family: 'Frutiger', 'Arial', sans-serif;">Backup Solution</span>
+        </a>
         <nav id="desktop-utilities-nav" class="flex items-center space-x-2 sm:space-x-4">
             <div class="relative">
-                <button id="language-toggle-button" class="utility-button px-4 py-2 flex items-center gap-2"><span id="current-language-display"></span><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
-                <div id="language-dropdown" class="language-dropdown absolute right-0 mt-2 w-28 bg-white rounded-md shadow-lg hidden z-20">
+                <button id="language-toggle-button" class="utility-button px-4 py-2 flex items-center gap-2"><span
+                        id="current-language-display"></span><svg class="w-4 h-4" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg></button>
+                <div id="language-dropdown"
+                    class="language-dropdown absolute right-0 mt-2 w-28 bg-white rounded-md shadow-lg hidden z-20">
                     <a href="#" class="block px-4 py-2" data-lang="th">ภาษาไทย</a>
                     <a href="#" class="block px-4 py-2" data-lang="en">English</a>
                 </div>
             </div>
             <button id="theme-toggle" class="utility-button">
-                <svg id="theme-icon-light" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                <svg id="theme-icon-dark" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                <svg id="theme-icon-light" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                    </path>
+                </svg>
+                <svg id="theme-icon-dark" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                    </path>
+                </svg>
             </button>
         </nav>
     </header>
@@ -90,72 +195,102 @@
     <main class="container py-8">
         <section id="quote-page" class="card max-w-4xl mx-auto">
             <h1 class="text-3xl font-extrabold text-center mb-8" data-i18n="calculateQuote"></h1>
-            
+
             <section id="quote-results-section" class="mb-6 hidden">
                 <h2 class="text-2xl font-bold mb-4" data-i18n="resultsTitle"></h2>
                 <div id="quote-results-container"></div>
             </section>
-            
+
             <form id="quote-form" class="space-y-6" novalidate>
-                 <div id="form-message" class="p-4 rounded-md text-center hidden break-words"></div>
-                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div id="form-message" class="p-4 rounded-md text-center hidden break-words"></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="space-y-4 p-4 border rounded-lg bg-yellow-50">
                         <h2 class="text-xl font-semibold" data-i18n="originInfo"></h2>
                         <div>
-                            <label for="origin-country-input" class="block text-sm font-medium mb-1" data-i18n="originCountry"></label>
+                            <label for="origin-country-input" class="block text-sm font-medium mb-1"
+                                data-i18n="originCountry"></label>
                             <div class="relative">
-                                <input type="text" id="origin-country-input" class="input-field" data-i18n-placeholder="typeOrSelectCountry" autocomplete="off" required>
+                                <input type="text" id="origin-country-input" class="input-field"
+                                    data-i18n-placeholder="typeOrSelectCountry" autocomplete="off" required>
                                 <input type="hidden" id="origin-country-value">
                                 <div id="origin-country-dropdown" class="country-dropdown hidden"></div>
                             </div>
                         </div>
-                        <div><label for="quote-origin-postalcode" class="block text-sm font-medium mb-1" data-i18n="originPostalCodeRequired"></label><input type="text" id="quote-origin-postalcode" class="input-field" required data-i18n-placeholder="enterPostalCode"></div>
-                        <div><label for="quote-origin-city" class="block text-sm font-medium mb-1" data-i18n="originCity"></label><input type="text" id="quote-origin-city" class="input-field" required data-i18n-placeholder="enterCity"></div>
+                        <div><label for="quote-origin-postalcode" class="block text-sm font-medium mb-1"
+                                data-i18n="originPostalCodeRequired"></label><input type="text"
+                                id="quote-origin-postalcode" class="input-field" required
+                                data-i18n-placeholder="enterPostalCode"></div>
+                        <div><label for="quote-origin-city" class="block text-sm font-medium mb-1"
+                                data-i18n="originCity"></label><input type="text" id="quote-origin-city"
+                                class="input-field" required data-i18n-placeholder="enterCity"></div>
                     </div>
                     <div class="space-y-4 p-4 border rounded-lg bg-yellow-50">
                         <h2 class="text-xl font-semibold" data-i18n="destinationInfo"></h2>
-                         <div>
-                            <label for="destination-country-input" class="block text-sm font-medium mb-1" data-i18n="destinationCountry"></label>
+                        <div>
+                            <label for="destination-country-input" class="block text-sm font-medium mb-1"
+                                data-i18n="destinationCountry"></label>
                             <div class="relative">
-                                <input type="text" id="destination-country-input" class="input-field" data-i18n-placeholder="typeOrSelectCountry" autocomplete="off" required>
+                                <input type="text" id="destination-country-input" class="input-field"
+                                    data-i18n-placeholder="typeOrSelectCountry" autocomplete="off" required>
                                 <input type="hidden" id="destination-country-value">
                                 <div id="destination-country-dropdown" class="country-dropdown hidden"></div>
                             </div>
                         </div>
-                        <div><label for="quote-destination-postalcode" class="block text-sm font-medium mb-1" data-i18n="destinationPostalCodeRequired"></label><input type="text" id="quote-destination-postalcode" class="input-field" required data-i18n-placeholder="enterPostalCode"></div>
-                        <div><label for="quote-destination-city" class="block text-sm font-medium mb-1" data-i18n="destinationCity"></label><input type="text" id="quote-destination-city" class="input-field" required data-i18n-placeholder="enterCity"></div>
+                        <div><label for="quote-destination-postalcode" class="block text-sm font-medium mb-1"
+                                data-i18n="destinationPostalCodeRequired"></label><input type="text"
+                                id="quote-destination-postalcode" class="input-field" required
+                                data-i18n-placeholder="enterPostalCode"></div>
+                        <div><label for="quote-destination-city" class="block text-sm font-medium mb-1"
+                                data-i18n="destinationCity"></label><input type="text" id="quote-destination-city"
+                                class="input-field" required data-i18n-placeholder="enterCity"></div>
                     </div>
                 </div>
                 <div class="space-y-4 p-4 border rounded-lg bg-yellow-50">
                     <h2 class="text-xl font-semibold" data-i18n="packageDetails"></h2>
-                    <div><label for="quote-ship-date" class="block text-sm font-medium mb-1" data-i18n="shipmentDate"></label><input type="date" id="quote-ship-date" class="input-field" required></div>
-                    <div class="flex items-center mt-2"><input type="checkbox" id="quote-is-parcel" class="form-checkbox h-5 w-5 text-red-600 rounded-md"><label for="quote-is-parcel" class="ml-2 block text-sm font-medium" data-i18n="isParcel"></label></div>
-                    
+                    <div><label for="quote-ship-date" class="block text-sm font-medium mb-1"
+                            data-i18n="shipmentDate"></label><input type="date" id="quote-ship-date" class="input-field"
+                            required></div>
+                    <div class="flex items-center mt-2"><input type="checkbox" id="quote-is-parcel"
+                            class="form-checkbox h-5 w-5 text-dhl-red rounded-md"><label for="quote-is-parcel"
+                            class="ml-2 block text-sm font-medium" data-i18n="isParcel"></label></div>
+
                     <div id="quote-declared-value-container" class="hidden">
                         <label class="block text-sm font-medium mb-1" data-i18n="declaredValue"></label>
                         <div class="flex items-center gap-2">
-                            <input type="number" id="quote-declared-value" min="0" step="0.01" class="input-field" data-i18n-placeholder="enterDeclaredValue">
+                            <input type="number" id="quote-declared-value" min="0" step="0.01" class="input-field"
+                                data-i18n-placeholder="enterDeclaredValue">
                             <select id="quote-declared-currency" class="input-field w-32"></select>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <div><label class="block text-sm" data-i18n="weightKg"></label><input type="number" id="quote-weight" min="0.1" step="0.1" class="input-field" required data-i18n-placeholder="weightPlaceholder"></div>
-                        <div><label class="block text-sm" data-i18n="lengthCm"></label><input type="number" id="quote-length" min="0.1" step="0.1" class="input-field" required data-i18n-placeholder="lengthPlaceholder"></div>
-                        <div><label class="block text-sm" data-i18n="widthCm"></label><input type="number" id="quote-width" min="0.1" step="0.1" class="input-field" required data-i18n-placeholder="widthPlaceholder"></div>
-                        <div><label class="block text-sm" data-i18n="heightCm"></label><input type="number" id="quote-height" min="0.1" step="0.1" class="input-field" required data-i18n-placeholder="heightPlaceholder"></div>
+                        <div><label class="block text-sm" data-i18n="weightKg"></label><input type="number"
+                                id="quote-weight" min="0.1" step="0.1" class="input-field" required
+                                data-i18n-placeholder="weightPlaceholder"></div>
+                        <div><label class="block text-sm" data-i18n="lengthCm"></label><input type="number"
+                                id="quote-length" min="0.1" step="0.1" class="input-field" required
+                                data-i18n-placeholder="lengthPlaceholder"></div>
+                        <div><label class="block text-sm" data-i18n="widthCm"></label><input type="number"
+                                id="quote-width" min="0.1" step="0.1" class="input-field" required
+                                data-i18n-placeholder="widthPlaceholder"></div>
+                        <div><label class="block text-sm" data-i18n="heightCm"></label><input type="number"
+                                id="quote-height" min="0.1" step="0.1" class="input-field" required
+                                data-i18n-placeholder="heightPlaceholder"></div>
                     </div>
                 </div>
-                 <div class="flex flex-col sm:flex-row gap-4">
-                    <button type="submit" id="get-quote-btn" class="flex-1 btn-primary btn-yellow" data-i18n="getQuote"></button>
-                    <button type="button" id="quote-clear-button" class="flex-1 btn-primary btn-gray" data-i18n="clearData"></button>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button type="submit" id="get-quote-btn" class="flex-1 btn-primary btn-yellow"
+                        data-i18n="getQuote"></button>
+                    <button type="button" id="quote-clear-button" class="flex-1 btn-primary btn-gray"
+                        data-i18n="clearData"></button>
                 </div>
             </form>
-             <a href="index.html" class="mt-6 w-full btn-primary btn-gray text-center" data-i18n="backToMain"></a>
-             
+            <a href="index.html" class="mt-6 w-full btn-primary btn-gray text-center" data-i18n="backToMain"></a>
+
         </section>
 
-        <div id="leave-confirm-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div id="leave-confirm-modal"
+            class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
             <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 w-full max-w-md mx-auto">
                 <h2 class="text-2xl font-bold mb-4" data-i18n="leaveSiteTitle"></h2>
                 <p class="text-gray-700 dark:text-gray-300 mb-6" data-i18n="leaveSiteBody"></p>
@@ -165,21 +300,25 @@
                 </div>
             </div>
         </div>
-        
-        <div id="loading-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
-            <div class="w-16 h-16 border-8 border-dashed rounded-full animate-spin border-yellow-400"></div>
+
+        <div id="loading-modal"
+            class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+            <div class="w-16 h-16 border-8 border-dashed rounded-full animate-spin border-dhl-yellow"></div>
         </div>
 
     </main>
-    <footer class="bg-gray-800 text-white py-8 mt-8"><div class="text-center text-sm text-gray-400">&copy; <span id="current-year"></span> DHL Express. <span data-i18n="allRightsReserved"></span></div></footer>
-    
+    <footer class="bg-gray-800 text-white py-8 mt-8">
+        <div class="text-center text-sm text-gray-400">&copy; <span id="current-year"></span> DHL Express. <span
+                data-i18n="allRightsReserved"></span></div>
+    </footer>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const translations = { 
-                'th': { 'leaveSiteTitle': 'ออกจากหน้านี้?', 'leaveSiteBody': 'การเปลี่ยนแปลงที่คุณทำอาจไม่ถูกบันทึก', 'stayButton': 'อยู่ต่อ', 'leaveButton': 'ออก', 'calculateQuote': 'คำนวณค่าขนส่ง', 'resultsTitle': 'ผลการค้นหา', 'getQuote': 'คำนวณค่าขนส่ง', 'enterDeclaredValue': 'กรอกมูลค่าสินค้า', 'originInfo': 'ข้อมูลต้นทาง:', 'destinationInfo': 'ข้อมูลปลายทาง:', 'packageDetails': 'รายละเอียดพัสดุ:', 'originCountry': 'ประเทศต้นทาง:', 'originCity': 'เมืองต้นทาง:', 'destinationCountry': 'ประเทศปลายทาง:', 'destinationCity': 'เมืองปลายทาง:', 'lengthCm': 'ความยาว (ซม.):', 'widthCm': 'ความกว้าง (ซม.):', 'heightCm': 'ความสูง (ซม.):', 'weightKg': 'น้ำหนัก (กก.):', 'clearData': 'ล้างข้อมูล', 'backToMain': 'กลับสู่หน้าหลัก', 'originPostalCodeRequired': 'รหัสไปรษณีย์:', 'destinationPostalCodeRequired': 'รหัสไปรษณีย์:', 'shipmentDate': 'วันที่จัดส่ง:', 'isParcel': 'พัสดุ', 'declaredValue': 'มูลค่าสินค้า:', 'selectCountry': 'เลือกประเทศ', 'enterCity': 'กรอกชื่อเมือง', 'enterPostalCode': 'กรอกรหัสไปรษณีย์', 'lengthPlaceholder': 'ยาว', 'widthPlaceholder': 'กว้าง', 'heightPlaceholder': 'สูง', 'weightPlaceholder': 'น้ำหนัก', 'fillAllFields': 'กรุณากรอกข้อมูลที่จำเป็นให้ครบถ้วน', 'allRightsReserved': 'สงวนลิขสิทธิ์.', 'gettingQuote': 'กำลังคำนวณราคา...', 'apiError': 'เกิดข้อผิดพลาดในการเชื่อมต่อ', 'noResults': 'ไม่พบราคาสำหรับเส้นทางที่ท่านเลือก', 'productName': 'ชื่อบริการ', 'estDelivery': 'ประมาณการจัดส่ง', 'estPrice': 'ราคาประมาณ', 'breakdown': 'ดูรายละเอียด', 'services': 'บริการ', 'priceInclTax': 'ราคา (รวมภาษี)', 'tax': 'ภาษี', 'billableWeight': 'น้ำหนักที่ใช้คำนวณ', 'endOfDay': 'ภายในสิ้นวันทำการ', 'beforeTime': 'ก่อนเวลา', 'typeOrSelectCountry': 'พิมพ์หรือเลือกประเทศ' }, 
+            const translations = {
+                'th': { 'leaveSiteTitle': 'ออกจากหน้านี้?', 'leaveSiteBody': 'การเปลี่ยนแปลงที่คุณทำอาจไม่ถูกบันทึก', 'stayButton': 'อยู่ต่อ', 'leaveButton': 'ออก', 'calculateQuote': 'คำนวณค่าขนส่ง', 'resultsTitle': 'ผลการค้นหา', 'getQuote': 'คำนวณค่าขนส่ง', 'enterDeclaredValue': 'กรอกมูลค่าสินค้า', 'originInfo': 'ข้อมูลต้นทาง:', 'destinationInfo': 'ข้อมูลปลายทาง:', 'packageDetails': 'รายละเอียดพัสดุ:', 'originCountry': 'ประเทศต้นทาง:', 'originCity': 'เมืองต้นทาง:', 'destinationCountry': 'ประเทศปลายทาง:', 'destinationCity': 'เมืองปลายทาง:', 'lengthCm': 'ความยาว (ซม.):', 'widthCm': 'ความกว้าง (ซม.):', 'heightCm': 'ความสูง (ซม.):', 'weightKg': 'น้ำหนัก (กก.):', 'clearData': 'ล้างข้อมูล', 'backToMain': 'กลับสู่หน้าหลัก', 'originPostalCodeRequired': 'รหัสไปรษณีย์:', 'destinationPostalCodeRequired': 'รหัสไปรษณีย์:', 'shipmentDate': 'วันที่จัดส่ง:', 'isParcel': 'พัสดุ', 'declaredValue': 'มูลค่าสินค้า:', 'selectCountry': 'เลือกประเทศ', 'enterCity': 'กรอกชื่อเมือง', 'enterPostalCode': 'กรอกรหัสไปรษณีย์', 'lengthPlaceholder': 'ยาว', 'widthPlaceholder': 'กว้าง', 'heightPlaceholder': 'สูง', 'weightPlaceholder': 'น้ำหนัก', 'fillAllFields': 'กรุณากรอกข้อมูลที่จำเป็นให้ครบถ้วน', 'allRightsReserved': 'สงวนลิขสิทธิ์.', 'gettingQuote': 'กำลังคำนวณราคา...', 'apiError': 'เกิดข้อผิดพลาดในการเชื่อมต่อ', 'noResults': 'ไม่พบราคาสำหรับเส้นทางที่ท่านเลือก', 'productName': 'ชื่อบริการ', 'estDelivery': 'ประมาณการจัดส่ง', 'estPrice': 'ราคาประมาณ', 'breakdown': 'ดูรายละเอียด', 'services': 'บริการ', 'priceInclTax': 'ราคา (รวมภาษี)', 'tax': 'ภาษี', 'billableWeight': 'น้ำหนักที่ใช้คำนวณ', 'endOfDay': 'ภายในสิ้นวันทำการ', 'beforeTime': 'ก่อนเวลา', 'typeOrSelectCountry': 'พิมพ์หรือเลือกประเทศ' },
                 'en': { 'leaveSiteTitle': 'Leave Site?', 'leaveSiteBody': 'Changes you made may not be saved.', 'stayButton': 'Stay', 'leaveButton': 'Leave', 'calculateQuote': 'Calculate Shipping Charge', 'resultsTitle': 'Results', 'getQuote': 'Get Quote', 'enterDeclaredValue': 'Enter declared value', 'originInfo': 'Origin Information:', 'destinationInfo': 'Destination Information:', 'packageDetails': 'Package Details:', 'originCountry': 'Origin Country:', 'originCity': 'Origin City:', 'destinationCountry': 'Destination Country:', 'destinationCity': 'Destination City:', 'lengthCm': 'Length (cm):', 'widthCm': 'Width (cm):', 'heightCm': 'Height (cm):', 'weightKg': 'Weight (kg):', 'clearData': 'Clear Data', 'backToMain': 'Back to Main', 'originPostalCodeRequired': 'Postal Code:', 'destinationPostalCodeRequired': 'Postal Code:', 'shipmentDate': 'Shipment Date:', 'isParcel': 'Parcel', 'declaredValue': 'Declared Value:', 'selectCountry': 'Select Country', 'enterCity': 'Enter city name', 'enterPostalCode': 'Enter postal code', 'lengthPlaceholder': 'Length', 'widthPlaceholder': 'Width', 'heightPlaceholder': 'Height', 'weightPlaceholder': 'Weight', 'fillAllFields': 'Please fill in all required fields.', 'allRightsReserved': 'All rights reserved.', 'gettingQuote': 'Getting rates...', 'apiError': 'An error occurred while fetching rates', 'noResults': 'No rates found for the selected route.', 'productName': 'Product Name', 'estDelivery': 'Estimated Delivery', 'estPrice': 'Estimated Price', 'breakdown': 'Breakdown', 'services': 'Services', 'priceInclTax': 'Price (Incl. Tax)', 'tax': 'Tax', 'billableWeight': 'Billable Weight', 'endOfDay': 'by the end of the day', 'beforeTime': 'before', 'typeOrSelectCountry': 'Type or select a country' }
             };
-            const countryList = [ { "name": "Afghanistan", "code": "AF" }, { "name": "Albania", "code": "AL" }, { "name": "Algeria", "code": "DZ" }, { "name": "American Samoa", "code": "AS" }, { "name": "Andorra", "code": "AD" }, { "name": "Angola", "code": "AO" }, { "name": "Anguilla", "code": "AI" }, { "name": "Antigua", "code": "AG" }, { "name": "Argentina", "code": "AR" }, { "name": "Armenia", "code": "AM" }, { "name": "Aruba", "code": "AW" }, { "name": "Australia", "code": "AU" }, { "name": "Austria", "code": "AT" }, { "name": "Azerbaijan", "code": "AZ" }, { "name": "Bahamas", "code": "BS" }, { "name": "Bahrain", "code": "BH" }, { "name": "Bangladesh", "code": "BD" }, { "name": "Barbados", "code": "BB" }, { "name": "Belarus", "code": "BY" }, { "name": "Belgium", "code": "BE" }, { "name": "Belize", "code": "BZ" }, { "name": "Benin", "code": "BJ" }, { "name": "Bermuda", "code": "BM" }, { "name": "Bhutan", "code": "BT" }, { "name": "Bolivia", "code": "BO" }, { "name": "Bonaire", "code": "BQ" }, { "name": "Bosnia and Herzegovina", "code": "BA" }, { "name": "Botswana", "code": "BW" }, { "name": "Brazil", "code": "BR" }, { "name": "Brunei", "code": "BN" }, { "name": "Bulgaria", "code": "BG" }, { "name": "Burkina Faso", "code": "BF" }, { "name": "Burundi", "code": "BI" }, { "name": "Cambodia", "code": "KH" }, { "name": "Cameroon", "code": "CM" }, { "name": "Canada", "code": "CA" }, { "name": "Canary Islands, The", "code": "IC" }, { "name": "Cape Verde", "code": "CV" }, { "name": "Cayman Islands", "code": "KY" }, { "name": "Central African Republic", "code": "CF" }, { "name": "Chad", "code": "TD" }, { "name": "Chile", "code": "CL" }, { "name": "China, People's Republic", "code": "CN" }, { "name": "Colombia", "code": "CO" }, { "name": "Comoros", "code": "KM" }, { "name": "Congo", "code": "CG" }, { "name": "Congo, The Democratic Republic of", "code": "CD" }, { "name": "Cook Islands", "code": "CK" }, { "name": "Costa Rica", "code": "CR" }, { "name": "Cote D'ivoire", "code": "CI" }, { "name": "Croatia", "code": "HR" }, { "name": "Cuba", "code": "CU" }, { "name": "Curacao", "code": "CW" }, { "name": "Cyprus", "code": "CY" }, { "name": "Czech Republic, The", "code": "CZ" }, { "name": "Denmark", "code": "DK" }, { "name": "Djibouti", "code": "DJ" }, { "name": "Dominica", "code": "DM" }, { "name": "Dominican Republic", "code": "DO" }, { "name": "East Timor", "code": "TL" }, { "name": "Ecuador", "code": "EC" }, { "name": "Egypt", "code": "EG" }, { "name": "El Salvador", "code": "SV" }, { "name": "Eritrea", "code": "ER" }, { "name": "Estonia", "code": "EE" }, { "name": "Ethiopia", "code": "ET" }, { "name": "Falkland Islands", "code": "FK" }, { "name": "Faroe Islands", "code": "FO" }, { "name": "Fiji", "code": "FJ" }, { "name": "Finland", "code": "FI" }, { "name": "France", "code": "FR" }, { "name": "French Guyana", "code": "GF" }, { "name": "Gabon", "code": "GA" }, { "name": "Gambia", "code": "GM" }, { "name": "Georgia", "code": "GE" }, { "name": "Germany", "code": "DE" }, { "name": "Ghana", "code": "GH" }, { "name": "Gibraltar", "code": "GI" }, { "name": "Greece", "code": "GR" }, { "name": "Greenland", "code": "GL" }, { "name": "Grenada", "code": "GD" }, { "name": "Guadeloupe", "code": "GP" }, { "name": "Guam", "code": "GU" }, { "name": "Guatemala", "code": "GT" }, { "name": "Guernsey", "code": "GG" }, { "name": "Guinea Republic", "code": "GN" }, { "name": "Guinea-Bissau", "code": "GW" }, { "name": "Guinea-Equatorial", "code": "GQ" }, { "name": "Guyana", "code": "GY" }, { "name": "Haiti", "code": "HT" }, { "name": "Honduras", "code": "HN" }, { "name": "Hong Kong", "code": "HK" }, { "name": "Hungary", "code": "HU" }, { "name": "Iceland", "code": "IS" }, { "name": "India", "code": "IN" }, { "name": "Indonesia", "code": "ID" }, { "name": "Iran (Islamic Republic of)", "code": "IR" }, { "name": "Iraq", "code": "IQ" }, { "name": "Ireland, Republic of", "code": "IE" }, { "name": "Israel", "code": "IL" }, { "name": "Italy", "code": "IT" }, { "name": "Jamaica", "code": "JM" }, { "name": "Japan", "code": "JP" }, { "name": "Jersey", "code": "JE" }, { "name": "Jordan", "code": "JO" }, { "name": "Kazakhstan", "code": "KZ" }, { "name": "Kenya", "code": "KE" }, { "name": "Kiribati", "code": "KI" }, { "name": "Korea, Republic of", "code": "KR" }, { "name": "Korea, The D.P.R of (North K.)", "code": "KP" }, { "name": "Kosovo", "code": "KV" }, { "name": "Kuwait", "code": "KW" }, { "name": "Kyrgyzstan", "code": "KG" }, { "name": "Lao People's Democratic Republic", "code": "LA" }, { "name": "Latvia", "code": "LV" }, { "name": "Lebanon", "code": "LB" }, { "name": "Lesotho", "code": "LS" }, { "name": "Liberia", "code": "LR" }, { "name": "Libya", "code": "LY" }, { "name": "Liechtenstein", "code": "LI" }, { "name": "Lithuania", "code": "LT" }, { "name": "Luxembourg", "code": "LU" }, { "name": "Macau", "code": "MO" }, { "name": "Macedonia, Republic of", "code": "MK" }, { "name": "Madagascar", "code": "MG" }, { "name": "Malawi", "code": "MW" }, { "name": "Malaysia", "code": "MY" }, { "name": "Maldives", "code": "MV" }, { "name": "Mali", "code": "ML" }, { "name": "Malta", "code": "MT" }, { "name": "Marshall Islands", "code": "MH" }, { "name": "Martinique", "code": "MQ" }, { "name": "Mauritania", "code": "MR" }, { "name": "Mauritius", "code": "MU" }, { "name": "Mayotte", "code": "YT" }, { "name": "Mexico", "code": "MX" }, { "name": "Micronesia, Federated States of", "code": "FM" }, { "name": "Moldova, Republic of", "code": "MD" }, { "name": "Monaco", "code": "MC" }, { "name": "Mongolia", "code": "MN" }, { "name": "Montenegro, Republic of", "code": "ME" }, { "name": "Montserrat", "code": "MS" }, { "name": "Morocco", "code": "MA" }, { "name": "Mozambique", "code": "MZ" }, { "name": "Myanmar", "code": "MM" }, { "name": "Namibia", "code": "NA" }, { "name": "Nauru, Republic of", "code": "NR" }, { "name": "Nepal", "code": "NP" }, { "name": "Netherlands, The", "code": "NL" }, { "name": "New Caledonia", "code": "NC" }, { "name": "New Zealand", "code": "NZ" }, { "name": "Nicaragua", "code": "NI" }, { "name": "Niger", "code": "NE" }, { "name": "Nigeria", "code": "NG" }, { "name": "Niue", "code": "NU" }, { "name": "Northern Mariana Islands", "code": "MP" }, { "name": "Norway", "code": "NO" }, { "name": "Oman", "code": "OM" }, { "name": "Pakistan", "code": "PK" }, { "name": "Palau", "code": "PW" }, { "name": "Panama", "code": "PA" }, { "name": "Papua New Guinea", "code": "PG" }, { "name": "Paraguay", "code": "PY" }, { "name": "Peru", "code": "PE" }, { "name": "Philippines, The", "code": "PH" }, { "name": "Poland", "code": "PL" }, { "name": "Portugal", "code": "PT" }, { "name": "Puerto Rico", "code": "PR" }, { "name": "Qatar", "code": "QA" }, { "name": "Reunion, Island of", "code": "RE" }, { "name": "Romania", "code": "RO" }, { "name": "Russian Federation, The", "code": "RU" }, { "name": "Rwanda", "code": "RW" }, { "name": "Saipan", "code": "SP" }, { "name": "San Marino", "code": "SM" }, { "name": "Sao Tome and Principe", "code": "ST" }, { "name": "Saudi Arabia", "code": "SA" }, { "name": "Senegal", "code": "SN" }, { "name": "Serbia, Republic of", "code": "RS" }, { "name": "Seychelles", "code": "SC" }, { "name": "Sierra Leone", "code": "SL" }, { "name": "Singapore", "code": "SG" }, { "name": "Slovakia", "code": "SK" }, { "name": "Slovenia", "code": "SI" }, { "name": "Solomon Islands", "code": "SB" }, { "name": "Somalia", "code": "SO" }, { "name": "Somaliland, Rep of (North Somalia)", "code": "XS" }, { "name": "South Africa", "code": "ZA" }, { "name": "South Sudan", "code": "SS" }, { "name": "Spain", "code": "ES" }, { "name": "Sri Lanka", "code": "LK" }, { "name": "St. Barthelemy", "code": "XY" }, { "name": "St. Eustatius", "code": "XE" }, { "name": "St. Helena", "code": "SH" }, { "name": "St. Kitts and Nevis", "code": "KN" }, { "name": "St. Lucia", "code": "LC" }, { "name": "St. Maarten", "code": "SX" }, { "name": "St. Vincent", "code": "VC" }, { "name": "Sudan", "code": "SD" }, { "name": "Suriname", "code": "SR" }, { "name": "Swaziland", "code": "SZ" }, { "name": "Sweden", "code": "SE" }, { "name": "Switzerland", "code": "CH" }, { "name": "Syria", "code": "SY" }, { "name": "Tahiti", "code": "PF" }, { "name": "Taiwan", "code": "TW" }, { "name": "Tanzania", "code": "TZ" }, { "name": "Thailand", "code": "TH" }, { "name": "Togo", "code": "TG" }, { "name": "Tonga", "code": "TO" }, { "name": "Trinidad and Tobago", "code": "TT" }, { "name": "Tunisia", "code": "TN" }, { "name": "Turkey", "code": "TR" }, { "name": "Turkmenistan", "code": "TM" }, { "name": "Turks and Caicos Islands", "code": "TC" }, { "name": "Tuvalu", "code": "TV" }, { "name": "Uganda", "code": "UG" }, { "name": "Ukraine", "code": "UA" }, { "name": "United Arab Emirates", "code": "AE" }, { "name": "United Kingdom", "code": "GB" }, { "name": "United States of America", "code": "US" }, { "name": "Uruguay", "code": "UY" }, { "name": "Uzbekistan", "code": "UZ" }, { "name": "Vanuatu", "code": "VU" }, { "name": "Vatican City", "code": "VA" }, { "name": "Venezuela", "code": "VE" }, { "name": "Vietnam", "code": "VN" }, { "name": "Virgin Islands (British)", "code": "VG" }, { "name": "Virgin Islands (US)", "code": "VI" }, { "name": "Yemen, Republic of", "code": "YE" }, { "name": "Zambia", "code": "ZM" }, { "name": "Zimbabwe", "code": "ZW" } ];
+            const countryList = [{ "name": "Afghanistan", "code": "AF" }, { "name": "Albania", "code": "AL" }, { "name": "Algeria", "code": "DZ" }, { "name": "American Samoa", "code": "AS" }, { "name": "Andorra", "code": "AD" }, { "name": "Angola", "code": "AO" }, { "name": "Anguilla", "code": "AI" }, { "name": "Antigua", "code": "AG" }, { "name": "Argentina", "code": "AR" }, { "name": "Armenia", "code": "AM" }, { "name": "Aruba", "code": "AW" }, { "name": "Australia", "code": "AU" }, { "name": "Austria", "code": "AT" }, { "name": "Azerbaijan", "code": "AZ" }, { "name": "Bahamas", "code": "BS" }, { "name": "Bahrain", "code": "BH" }, { "name": "Bangladesh", "code": "BD" }, { "name": "Barbados", "code": "BB" }, { "name": "Belarus", "code": "BY" }, { "name": "Belgium", "code": "BE" }, { "name": "Belize", "code": "BZ" }, { "name": "Benin", "code": "BJ" }, { "name": "Bermuda", "code": "BM" }, { "name": "Bhutan", "code": "BT" }, { "name": "Bolivia", "code": "BO" }, { "name": "Bonaire", "code": "BQ" }, { "name": "Bosnia and Herzegovina", "code": "BA" }, { "name": "Botswana", "code": "BW" }, { "name": "Brazil", "code": "BR" }, { "name": "Brunei", "code": "BN" }, { "name": "Bulgaria", "code": "BG" }, { "name": "Burkina Faso", "code": "BF" }, { "name": "Burundi", "code": "BI" }, { "name": "Cambodia", "code": "KH" }, { "name": "Cameroon", "code": "CM" }, { "name": "Canada", "code": "CA" }, { "name": "Canary Islands, The", "code": "IC" }, { "name": "Cape Verde", "code": "CV" }, { "name": "Cayman Islands", "code": "KY" }, { "name": "Central African Republic", "code": "CF" }, { "name": "Chad", "code": "TD" }, { "name": "Chile", "code": "CL" }, { "name": "China, People's Republic", "code": "CN" }, { "name": "Colombia", "code": "CO" }, { "name": "Comoros", "code": "KM" }, { "name": "Congo", "code": "CG" }, { "name": "Congo, The Democratic Republic of", "code": "CD" }, { "name": "Cook Islands", "code": "CK" }, { "name": "Costa Rica", "code": "CR" }, { "name": "Cote D'ivoire", "code": "CI" }, { "name": "Croatia", "code": "HR" }, { "name": "Cuba", "code": "CU" }, { "name": "Curacao", "code": "CW" }, { "name": "Cyprus", "code": "CY" }, { "name": "Czech Republic, The", "code": "CZ" }, { "name": "Denmark", "code": "DK" }, { "name": "Djibouti", "code": "DJ" }, { "name": "Dominica", "code": "DM" }, { "name": "Dominican Republic", "code": "DO" }, { "name": "East Timor", "code": "TL" }, { "name": "Ecuador", "code": "EC" }, { "name": "Egypt", "code": "EG" }, { "name": "El Salvador", "code": "SV" }, { "name": "Eritrea", "code": "ER" }, { "name": "Estonia", "code": "EE" }, { "name": "Ethiopia", "code": "ET" }, { "name": "Falkland Islands", "code": "FK" }, { "name": "Faroe Islands", "code": "FO" }, { "name": "Fiji", "code": "FJ" }, { "name": "Finland", "code": "FI" }, { "name": "France", "code": "FR" }, { "name": "French Guyana", "code": "GF" }, { "name": "Gabon", "code": "GA" }, { "name": "Gambia", "code": "GM" }, { "name": "Georgia", "code": "GE" }, { "name": "Germany", "code": "DE" }, { "name": "Ghana", "code": "GH" }, { "name": "Gibraltar", "code": "GI" }, { "name": "Greece", "code": "GR" }, { "name": "Greenland", "code": "GL" }, { "name": "Grenada", "code": "GD" }, { "name": "Guadeloupe", "code": "GP" }, { "name": "Guam", "code": "GU" }, { "name": "Guatemala", "code": "GT" }, { "name": "Guernsey", "code": "GG" }, { "name": "Guinea Republic", "code": "GN" }, { "name": "Guinea-Bissau", "code": "GW" }, { "name": "Guinea-Equatorial", "code": "GQ" }, { "name": "Guyana", "code": "GY" }, { "name": "Haiti", "code": "HT" }, { "name": "Honduras", "code": "HN" }, { "name": "Hong Kong", "code": "HK" }, { "name": "Hungary", "code": "HU" }, { "name": "Iceland", "code": "IS" }, { "name": "India", "code": "IN" }, { "name": "Indonesia", "code": "ID" }, { "name": "Iran (Islamic Republic of)", "code": "IR" }, { "name": "Iraq", "code": "IQ" }, { "name": "Ireland, Republic of", "code": "IE" }, { "name": "Israel", "code": "IL" }, { "name": "Italy", "code": "IT" }, { "name": "Jamaica", "code": "JM" }, { "name": "Japan", "code": "JP" }, { "name": "Jersey", "code": "JE" }, { "name": "Jordan", "code": "JO" }, { "name": "Kazakhstan", "code": "KZ" }, { "name": "Kenya", "code": "KE" }, { "name": "Kiribati", "code": "KI" }, { "name": "Korea, Republic of", "code": "KR" }, { "name": "Korea, The D.P.R of (North K.)", "code": "KP" }, { "name": "Kosovo", "code": "KV" }, { "name": "Kuwait", "code": "KW" }, { "name": "Kyrgyzstan", "code": "KG" }, { "name": "Lao People's Democratic Republic", "code": "LA" }, { "name": "Latvia", "code": "LV" }, { "name": "Lebanon", "code": "LB" }, { "name": "Lesotho", "code": "LS" }, { "name": "Liberia", "code": "LR" }, { "name": "Libya", "code": "LY" }, { "name": "Liechtenstein", "code": "LI" }, { "name": "Lithuania", "code": "LT" }, { "name": "Luxembourg", "code": "LU" }, { "name": "Macau", "code": "MO" }, { "name": "Macedonia, Republic of", "code": "MK" }, { "name": "Madagascar", "code": "MG" }, { "name": "Malawi", "code": "MW" }, { "name": "Malaysia", "code": "MY" }, { "name": "Maldives", "code": "MV" }, { "name": "Mali", "code": "ML" }, { "name": "Malta", "code": "MT" }, { "name": "Marshall Islands", "code": "MH" }, { "name": "Martinique", "code": "MQ" }, { "name": "Mauritania", "code": "MR" }, { "name": "Mauritius", "code": "MU" }, { "name": "Mayotte", "code": "YT" }, { "name": "Mexico", "code": "MX" }, { "name": "Micronesia, Federated States of", "code": "FM" }, { "name": "Moldova, Republic of", "code": "MD" }, { "name": "Monaco", "code": "MC" }, { "name": "Mongolia", "code": "MN" }, { "name": "Montenegro, Republic of", "code": "ME" }, { "name": "Montserrat", "code": "MS" }, { "name": "Morocco", "code": "MA" }, { "name": "Mozambique", "code": "MZ" }, { "name": "Myanmar", "code": "MM" }, { "name": "Namibia", "code": "NA" }, { "name": "Nauru, Republic of", "code": "NR" }, { "name": "Nepal", "code": "NP" }, { "name": "Netherlands, The", "code": "NL" }, { "name": "New Caledonia", "code": "NC" }, { "name": "New Zealand", "code": "NZ" }, { "name": "Nicaragua", "code": "NI" }, { "name": "Niger", "code": "NE" }, { "name": "Nigeria", "code": "NG" }, { "name": "Niue", "code": "NU" }, { "name": "Northern Mariana Islands", "code": "MP" }, { "name": "Norway", "code": "NO" }, { "name": "Oman", "code": "OM" }, { "name": "Pakistan", "code": "PK" }, { "name": "Palau", "code": "PW" }, { "name": "Panama", "code": "PA" }, { "name": "Papua New Guinea", "code": "PG" }, { "name": "Paraguay", "code": "PY" }, { "name": "Peru", "code": "PE" }, { "name": "Philippines, The", "code": "PH" }, { "name": "Poland", "code": "PL" }, { "name": "Portugal", "code": "PT" }, { "name": "Puerto Rico", "code": "PR" }, { "name": "Qatar", "code": "QA" }, { "name": "Reunion, Island of", "code": "RE" }, { "name": "Romania", "code": "RO" }, { "name": "Russian Federation, The", "code": "RU" }, { "name": "Rwanda", "code": "RW" }, { "name": "Saipan", "code": "SP" }, { "name": "San Marino", "code": "SM" }, { "name": "Sao Tome and Principe", "code": "ST" }, { "name": "Saudi Arabia", "code": "SA" }, { "name": "Senegal", "code": "SN" }, { "name": "Serbia, Republic of", "code": "RS" }, { "name": "Seychelles", "code": "SC" }, { "name": "Sierra Leone", "code": "SL" }, { "name": "Singapore", "code": "SG" }, { "name": "Slovakia", "code": "SK" }, { "name": "Slovenia", "code": "SI" }, { "name": "Solomon Islands", "code": "SB" }, { "name": "Somalia", "code": "SO" }, { "name": "Somaliland, Rep of (North Somalia)", "code": "XS" }, { "name": "South Africa", "code": "ZA" }, { "name": "South Sudan", "code": "SS" }, { "name": "Spain", "code": "ES" }, { "name": "Sri Lanka", "code": "LK" }, { "name": "St. Barthelemy", "code": "XY" }, { "name": "St. Eustatius", "code": "XE" }, { "name": "St. Helena", "code": "SH" }, { "name": "St. Kitts and Nevis", "code": "KN" }, { "name": "St. Lucia", "code": "LC" }, { "name": "St. Maarten", "code": "SX" }, { "name": "St. Vincent", "code": "VC" }, { "name": "Sudan", "code": "SD" }, { "name": "Suriname", "code": "SR" }, { "name": "Swaziland", "code": "SZ" }, { "name": "Sweden", "code": "SE" }, { "name": "Switzerland", "code": "CH" }, { "name": "Syria", "code": "SY" }, { "name": "Tahiti", "code": "PF" }, { "name": "Taiwan", "code": "TW" }, { "name": "Tanzania", "code": "TZ" }, { "name": "Thailand", "code": "TH" }, { "name": "Togo", "code": "TG" }, { "name": "Tonga", "code": "TO" }, { "name": "Trinidad and Tobago", "code": "TT" }, { "name": "Tunisia", "code": "TN" }, { "name": "Turkey", "code": "TR" }, { "name": "Turkmenistan", "code": "TM" }, { "name": "Turks and Caicos Islands", "code": "TC" }, { "name": "Tuvalu", "code": "TV" }, { "name": "Uganda", "code": "UG" }, { "name": "Ukraine", "code": "UA" }, { "name": "United Arab Emirates", "code": "AE" }, { "name": "United Kingdom", "code": "GB" }, { "name": "United States of America", "code": "US" }, { "name": "Uruguay", "code": "UY" }, { "name": "Uzbekistan", "code": "UZ" }, { "name": "Vanuatu", "code": "VU" }, { "name": "Vatican City", "code": "VA" }, { "name": "Venezuela", "code": "VE" }, { "name": "Vietnam", "code": "VN" }, { "name": "Virgin Islands (British)", "code": "VG" }, { "name": "Virgin Islands (US)", "code": "VI" }, { "name": "Yemen, Republic of", "code": "YE" }, { "name": "Zambia", "code": "ZM" }, { "name": "Zimbabwe", "code": "ZW" }];
             let currentLanguage = localStorage.getItem('language') || 'th';
             let hasUnsavedChanges = false;
             let lastQuoteData = null;
@@ -196,7 +335,7 @@
             const loadingModal = document.getElementById('loading-modal');
 
             function getTranslatedText(key, replacements = {}) { let text = translations[currentLanguage]?.[key] || key; for (const placeholder in replacements) { text = text.replace(`{${placeholder}}`, replacements[placeholder]); } return text; }
-            
+
             function setupCountryComboBox(inputId, valueId, dropdownId) {
                 const input = document.getElementById(inputId);
                 const valueHolder = document.getElementById(valueId);
@@ -204,7 +343,7 @@
 
                 const renderDropdown = (filter = '') => {
                     const filteredList = countryList.filter(c => c.name.toLowerCase().includes(filter.toLowerCase()));
-                    dropdown.innerHTML = filteredList.map(c => 
+                    dropdown.innerHTML = filteredList.map(c =>
                         `<div class="country-dropdown-item" data-code="${c.code}" data-name="${c.name}">
                            <img src="https://flagcdn.com/w20/${c.code.toLowerCase()}.png" alt="${c.name} flag">
                            <span>${c.name}</span>
@@ -234,7 +373,7 @@
                         hasUnsavedChanges = true;
                     }
                 });
-                
+
                 document.addEventListener('click', (e) => {
                     if (!input.contains(e.target) && !dropdown.contains(e.target)) {
                         dropdown.classList.add('hidden');
@@ -248,24 +387,24 @@
                 currencyDropdown.innerHTML = currencies.map(c => `<option value="${c}">${c}</option>`).join('');
             }
 
-            function pageSetup() { 
-                document.title = `DHL Backup Solution - ${getTranslatedText('calculateQuote')}`; 
+            function pageSetup() {
+                document.title = `DHL Backup Solution - ${getTranslatedText('calculateQuote')}`;
                 setupCountryComboBox('origin-country-input', 'origin-country-value', 'origin-country-dropdown');
                 setupCountryComboBox('destination-country-input', 'destination-country-value', 'destination-country-dropdown');
                 populateCurrencyDropdown();
-                
+
                 const shipDateInput = document.getElementById('quote-ship-date');
                 const today = new Date().toISOString().slice(0, 10);
                 shipDateInput.min = today;
             }
-            
-            function updateContentLanguage(pageSpecificSetup) { 
-                document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if (el.hasAttribute('data-i18n-html')) el.innerHTML = getTranslatedText(key); else el.textContent = getTranslatedText(key); }); document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { el.placeholder = getTranslatedText(el.getAttribute('data-i18n-placeholder')); }); 
+
+            function updateContentLanguage(pageSpecificSetup) {
+                document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if (el.hasAttribute('data-i18n-html')) el.innerHTML = getTranslatedText(key); else el.textContent = getTranslatedText(key); }); document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { el.placeholder = getTranslatedText(el.getAttribute('data-i18n-placeholder')); });
                 const langDisplay = document.getElementById('current-language-display');
-                if (langDisplay) langDisplay.textContent = currentLanguage.toUpperCase(); 
-                if (typeof pageSpecificSetup === 'function') { 
-                    pageSpecificSetup(); 
-                } 
+                if (langDisplay) langDisplay.textContent = currentLanguage.toUpperCase();
+                if (typeof pageSpecificSetup === 'function') {
+                    pageSpecificSetup();
+                }
                 if (lastQuoteData && !quoteResultsSection.classList.contains('hidden')) {
                     displayQuoteResults(lastQuoteData);
                 }
@@ -274,24 +413,24 @@
             function setupTheme() { const themeToggle = document.getElementById('theme-toggle'); const lightIcon = document.getElementById('theme-icon-light'); const darkIcon = document.getElementById('theme-icon-dark'); const enableDarkMode = () => { document.body.classList.add('dark-mode'); localStorage.setItem('theme', 'dark'); lightIcon.classList.remove('hidden'); darkIcon.classList.add('hidden'); }; const disableDarkMode = () => { document.body.classList.remove('dark-mode'); localStorage.setItem('theme', 'light'); lightIcon.classList.add('hidden'); darkIcon.classList.remove('hidden'); }; themeToggle.addEventListener('click', () => document.body.classList.contains('dark-mode') ? disableDarkMode() : enableDarkMode()); if (localStorage.getItem('theme') === 'dark') { enableDarkMode(); } else { disableDarkMode(); } }
             function setupLanguageSwitch(pageSpecificSetup) { document.getElementById('language-toggle-button').addEventListener('click', () => document.getElementById('language-dropdown').classList.toggle('hidden')); document.querySelectorAll('[data-lang]').forEach(link => { link.addEventListener('click', (e) => { e.preventDefault(); currentLanguage = e.target.dataset.lang; localStorage.setItem('language', currentLanguage); updateContentLanguage(pageSpecificSetup); document.getElementById('language-dropdown').classList.add('hidden'); }); }); }
             function initializeSharedComponents(pageSpecificSetup) { setupTheme(); setupLanguageSwitch(pageSpecificSetup); document.getElementById('current-year').textContent = new Date().getFullYear(); updateContentLanguage(pageSpecificSetup); }
-            
-            const resetForm = () => { 
+
+            const resetForm = () => {
                 quoteForm.reset();
                 document.getElementById('origin-country-value').value = '';
                 document.getElementById('destination-country-value').value = '';
-                formMessage.classList.add('hidden'); 
-                quoteResultsSection.classList.add('hidden'); 
-                document.getElementById('quote-declared-value-container').classList.add('hidden'); 
-                const shipDateInput = document.getElementById('quote-ship-date'); 
-                if(shipDateInput){ 
+                formMessage.classList.add('hidden');
+                quoteResultsSection.classList.add('hidden');
+                document.getElementById('quote-declared-value-container').classList.add('hidden');
+                const shipDateInput = document.getElementById('quote-ship-date');
+                if (shipDateInput) {
                     const today = new Date().toISOString().slice(0, 10);
                     shipDateInput.value = today;
-                    shipDateInput.min = today; 
-                } 
-                hasUnsavedChanges = false; 
+                    shipDateInput.min = today;
+                }
+                hasUnsavedChanges = false;
                 lastQuoteData = null;
             };
-            
+
             function formatDeliveryTime(dateTimeStr) {
                 if (!dateTimeStr) return '';
                 const date = new Date(dateTimeStr);
@@ -309,8 +448,8 @@
             }
 
             function displayQuoteResults(data) {
-                const productsToDisplay = data.products.filter(product => 
-                    product.productName.toUpperCase() !== 'EXPRESS EASY' && 
+                const productsToDisplay = data.products.filter(product =>
+                    product.productName.toUpperCase() !== 'EXPRESS EASY' &&
                     product.productName.toUpperCase() !== 'MEDICAL EXPRESS'
                 );
 
@@ -318,7 +457,7 @@
                     quoteResultsContainer.innerHTML = `<p class="text-center p-4">${getTranslatedText('noResults')}</p>`;
                     return;
                 }
-                
+
                 let tableHTML = `
                     <table class="results-table">
                         <thead>
@@ -336,7 +475,7 @@
                     if (!totalPriceInfo) return;
 
                     const breakdownInfo = product.detailedPriceBreakdown?.find(p => p.currencyType === 'BILLC');
-                    
+
                     tableHTML += `
                         <tr>
                             <td>
@@ -348,9 +487,9 @@
                             <td>${formatDeliveryTime(product.deliveryCapabilities?.estimatedDeliveryDateAndTime)}</td>
                             <td class="text-right font-semibold">${totalPriceInfo.priceCurrency} ${totalPriceInfo.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                         </tr>`;
-                        
+
                     if (breakdownInfo) {
-                       tableHTML += `
+                        tableHTML += `
                         <tr class="breakdown-row" id="breakdown-${index}">
                             <td colspan="4" class="breakdown-cell">
                                 <div class="p-4">
@@ -393,42 +532,42 @@
             }
 
             initializeSharedComponents(pageSetup);
-            
-            quoteForm.addEventListener('input', (e) => { 
-                hasUnsavedChanges = true; 
-                
+
+            quoteForm.addEventListener('input', (e) => {
+                hasUnsavedChanges = true;
+
                 const target = e.target;
                 const id = target.id;
-                
+
                 if (id.includes('-city')) {
                     target.value = target.value.toUpperCase();
                 }
 
                 const asciiOnlyRegex = /[^\u0000-\u007F]/g;
-                
+
                 if (id.includes('-city') || id.includes('-postalcode')) {
                     target.value = target.value.replace(asciiOnlyRegex, '');
                 }
             });
 
             const isParcelCheckbox = document.getElementById('quote-is-parcel');
-            if(isParcelCheckbox){ isParcelCheckbox.addEventListener('change', (e) => { document.getElementById('quote-declared-value-container').classList.toggle('hidden', !e.target.checked); if(!e.target.checked) document.getElementById('quote-declared-value').value = ''; }); }
-            
+            if (isParcelCheckbox) { isParcelCheckbox.addEventListener('change', (e) => { document.getElementById('quote-declared-value-container').classList.toggle('hidden', !e.target.checked); if (!e.target.checked) document.getElementById('quote-declared-value').value = ''; }); }
+
             quoteForm.addEventListener('submit', async (event) => {
                 event.preventDefault();
 
                 if (!quoteForm.checkValidity() || !document.getElementById('origin-country-value').value || !document.getElementById('destination-country-value').value) {
                     formMessage.textContent = getTranslatedText('fillAllFields');
-                    formMessage.className = 'p-4 rounded-md text-center bg-red-100 text-red-700';
+                    formMessage.className = 'p-4 rounded-md text-center bg-red-100 text-dhl-red font-bold';
                     formMessage.classList.remove('hidden');
                     return;
                 }
-                
+
                 formMessage.classList.add('hidden');
                 loadingModal.classList.remove('hidden');
                 getQuoteBtn.disabled = true;
                 quoteResultsSection.classList.add('hidden');
-                
+
                 const formData = {
                     originCountry: document.getElementById('origin-country-value').value,
                     originCity: document.getElementById('quote-origin-city').value,
@@ -447,8 +586,8 @@
                         weight: document.getElementById('quote-weight').value || "0.5"
                     }]
                 };
-                
-                const backendApiUrl = 'https://dbs-back-viruzjokes-projects.vercel.app/api/quote'; 
+
+                const backendApiUrl = 'https://dbs-back-viruzjokes-projects.vercel.app/api/quote';
 
                 try {
                     const response = await fetch(backendApiUrl, {
@@ -460,17 +599,17 @@
                     if (!response.ok) {
                         let errorDetails = response.statusText;
                         try {
-                           const errorJson = await response.json();
-                           errorDetails = errorJson.detail || JSON.stringify(errorJson);
-                        } catch(e) {}
+                            const errorJson = await response.json();
+                            errorDetails = errorJson.detail || JSON.stringify(errorJson);
+                        } catch (e) { }
                         throw new Error(errorDetails);
                     }
-                    
+
                     const data = await response.json();
                     lastQuoteData = data;
-                    formMessage.classList.add('hidden'); 
+                    formMessage.classList.add('hidden');
                     quoteResultsSection.classList.remove('hidden');
-                    
+
                     displayQuoteResults(data);
                     quoteResultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     hasUnsavedChanges = false;
@@ -482,11 +621,11 @@
                         if (errorJson && errorJson.detail) {
                             displayMessage = errorJson.detail;
                         }
-                    } catch (e) {}
-                    
+                    } catch (e) { }
+
                     formMessage.innerHTML = `<span class="font-bold">${getTranslatedText('apiError')}:</span><br>${displayMessage}`;
                     formMessage.className = 'p-4 rounded-md text-center bg-red-100 text-red-700';
-                    formMessage.classList.remove('hidden'); 
+                    formMessage.classList.remove('hidden');
                 } finally {
                     getQuoteBtn.disabled = false;
                     loadingModal.classList.add('hidden');
@@ -494,11 +633,11 @@
             });
 
             document.getElementById('quote-clear-button').addEventListener('click', resetForm);
-            
+
             function showLeaveModal(url) {
                 navigationTargetUrl = url;
                 leaveModal.classList.remove('hidden');
-                updateContentLanguage(pageSetup); 
+                updateContentLanguage(pageSetup);
             }
 
             function hideLeaveModal() {
@@ -510,7 +649,7 @@
 
             leaveButton.addEventListener('click', () => {
                 if (navigationTargetUrl) {
-                    hasUnsavedChanges = false; 
+                    hasUnsavedChanges = false;
                     window.location.href = navigationTargetUrl;
                 }
             });
@@ -530,8 +669,8 @@
             window.addEventListener('beforeunload', (e) => {
                 if (hasUnsavedChanges) {
                     e.preventDefault();
-                    e.returnValue = ''; 
-                    return ''; 
+                    e.returnValue = '';
+                    return '';
                 }
             });
 
@@ -539,4 +678,5 @@
         });
     </script>
 </body>
+
 </html>

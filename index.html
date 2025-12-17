@@ -14,6 +14,19 @@
     <meta http-equiv="Expires" content="0">
     <title>Shipment Creation Backup Solution (Test Environment)- Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dhl-red': '#D40511',
+                        'dhl-yellow': '#FFCC00',
+                        'dhl-dark-red': '#AB000D',
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="styles.css">
 	<link rel="icon" href="DBS_Icon3.jpg" type="image/jpg">
     <style>
@@ -44,7 +57,10 @@
 </head>
 <body class="with-faded-bg">
     <header class="bg-white shadow-md py-4 px-6 md:px-10 flex justify-between items-center relative z-10 rounded-b-xl">
-        <a href="index.html" class="flex items-center"><span class="text-4xl font-bold text-red-600">Shipment Creation</span><span class="ml-2 text-xl font-semibold text-gray-800 sm:block">Backup Solution (Test Environment)</span></a>
+        <a href="index.html" class="flex items-center gap-3">
+            <img src="DHL_logo_rgb_black.svg" alt="DHL Logo" class="h-8 md:h-10">
+            <span class="text-xl md:text-2xl font-black text-dhl-red uppercase tracking-tighter" style="font-family: 'Frutiger', 'Arial', sans-serif;">Backup Solution</span>
+        </a>
         
         <!-- Desktop Nav -->
         <nav class="hidden sm:flex items-center space-x-2 sm:space-x-4">
@@ -98,17 +114,17 @@
     <main class="container py-8">
         <section id="corporate-page">			
             <section id="contact-info-section" class="card my-8 text-center">
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-red-600" data-i18n="emergencyOnlyTitle"></h2>
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-dhl-red" data-i18n="emergencyOnlyTitle"></h2>
                 <p class="text-gray-700 max-w-2xl mx-auto" data-i18n="emergencySystemMessage"></p>
             </section>
             <section class="card my-8">
                 <h2 class="text-3xl font-extrabold text-center text-gray-800 mb-8" data-i18n="gettingStartedTitle"></h2>
                 <div class="mt-2 text-center max-w-4xl mx-auto">
                     <div class="flex items-start justify-start gap-3 p-4 border rounded-md bg-yellow-50 border-yellow-200">
-                        <input type="checkbox" id="consent-checkbox" class="h-5 w-5 rounded text-red-600 focus:ring-red-500 border-gray-300 flex-shrink-0 mt-0.5">
+                        <input type="checkbox" id="consent-checkbox" class="h-5 w-5 rounded text-dhl-red focus:ring-red-500 border-gray-300 flex-shrink-0 mt-0.5">
                         <label for="consent-checkbox" class="text-sm text-gray-800 text-left">
                             <span data-i18n="consentTextPart1"></span>
-                            <button type="button" id="open-terms-btn" class="text-red-600 underline font-semibold hover:opacity-80" data-i18n="consentLinkText"></button>
+                            <button type="button" id="open-terms-btn" class="text-dhl-red underline font-semibold hover:opacity-80" data-i18n="consentLinkText"></button>
                             <span data-i18n="consentTextPart2"></span>
                         </label>
                     </div>

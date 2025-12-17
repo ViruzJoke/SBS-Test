@@ -1,65 +1,162 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Shipment Creation Backup Solution (Test Environment)- Shipment Confirmation</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dhl-red': '#D40511',
+                        'dhl-yellow': '#FFCC00',
+                        'dhl-dark-red': '#AB000D',
+                    }
+                }
+            }
+        }
+    </script>
     <!-- เพิ่ม PDF-LIB SCRIPT สำหรับรวมไฟล์ PDF -->
     <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
     <link rel="stylesheet" href="styles.css">
-	<link rel="icon" href="DBS_Icon3.jpg" type="image/jpg">
+    <link rel="icon" href="DBS_Icon3.jpg" type="image/jpg">
     <style>
         /* Custom styles for this page */
-        .confirmation-card { max-width: 800px; margin: 2rem auto; }
-        .awb-display { letter-spacing: 0.05em; }
+        .confirmation-card {
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .awb-display {
+            letter-spacing: 0.05em;
+        }
 
         /* [THEME FIX] Explicit styles for light and dark modes to prevent visual bugs */
         /* Light Mode Styles */
-        body:not(.dark-mode) .confirmation-awb-box { background-color: #fefce8; } /* bg-yellow-50 */
-        body:not(.dark-mode) .confirmation-awb-box .awb-label-text { color: #4b5563; } /* text-gray-600 */
-        body:not(.dark-mode) .confirmation-awb-box .awb-display { color: #dc2626; } /* text-red-600 */
-        body:not(.dark-mode) .confirmation-piece-id { background-color: #f3f4f6; color: #1f2937; } /* bg-gray-100 text-gray-800 */
-        body:not(.dark-mode) .confirmation-warnings-box { background-color: #fffbeb; } /* bg-yellow-50 */
-        body:not(.dark-mode) .confirmation-warnings-box .warnings-title { color: #d97706; } /* text-yellow-600 */
-        body:not(.dark-mode) .confirmation-warnings-box .warnings-content { color: #92400e; } /* text-yellow-800 */
-        
+        body:not(.dark-mode) .confirmation-awb-box {
+            background-color: #fefce8;
+        }
+
+        /* bg-yellow-50 */
+        body:not(.dark-mode) .confirmation-awb-box .awb-label-text {
+            color: #4b5563;
+        }
+
+        /* text-gray-600 */
+        body:not(.dark-mode) .confirmation-awb-box .awb-display {
+            color: #D40511;
+        }
+
+        /* text-dhl-red */
+        body:not(.dark-mode) .confirmation-piece-id {
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+
+        /* bg-gray-100 text-gray-800 */
+        body:not(.dark-mode) .confirmation-warnings-box {
+            background-color: #fffbeb;
+        }
+
+        /* bg-yellow-50 */
+        body:not(.dark-mode) .confirmation-warnings-box .warnings-title {
+            color: #d97706;
+        }
+
+        /* text-yellow-600 */
+        body:not(.dark-mode) .confirmation-warnings-box .warnings-content {
+            color: #92400e;
+        }
+
+        /* text-yellow-800 */
+
         /* Dark Mode Styles */
-        .dark-mode .language-dropdown { background-color: #374151; border-color: #4b5563; }
-        .dark-mode .language-dropdown a:hover { background-color: #4b5563; }
-        .dark-mode .confirmation-awb-box { background-color: #1f2937; }
-        .dark-mode .confirmation-awb-box .awb-display { color: #f59e0b; }
-        .dark-mode .confirmation-piece-id { background-color: #374151; color: #d1d5db; }
-        .dark-mode .confirmation-warnings-box { background-color: #78350f20; }
-        .dark-mode .confirmation-warnings-box .warnings-title { color: #f59e0b; }
-        .dark-mode .confirmation-warnings-box .warnings-content { color: #fde68a; }
+        .dark-mode .language-dropdown {
+            background-color: #374151;
+            border-color: #4b5563;
+        }
+
+        .dark-mode .language-dropdown a:hover {
+            background-color: #4b5563;
+        }
+
+        .dark-mode .confirmation-awb-box {
+            background-color: #1f2937;
+        }
+
+        .dark-mode .confirmation-awb-box .awb-display {
+            color: #f59e0b;
+        }
+
+        .dark-mode .confirmation-piece-id {
+            background-color: #374151;
+            color: #d1d5db;
+        }
+
+        .dark-mode .confirmation-warnings-box {
+            background-color: #78350f20;
+        }
+
+        .dark-mode .confirmation-warnings-box .warnings-title {
+            color: #f59e0b;
+        }
+
+        .dark-mode .confirmation-warnings-box .warnings-content {
+            color: #fde68a;
+        }
     </style>
 </head>
+
 <body class="with-faded-bg">
     <header class="bg-white shadow-md py-4 px-6 md:px-10 flex justify-between items-center relative z-10 rounded-b-xl">
-        <a href="index.html" class="flex items-center"><span class="text-4xl font-bold text-red-600">Shipment Creation</span><span class="ml-2 text-xl font-semibold text-gray-800 sm:block">Backup Solution (Test Environment)</span></a>
-        
+        <a href="index.html" class="flex items-center gap-3">
+            <img src="DHL_logo_rgb_black.svg" alt="DHL Logo" class="h-8 md:h-10">
+            <span class="text-xl md:text-2xl font-black text-dhl-red uppercase tracking-tighter"
+                style="font-family: 'Frutiger', 'Arial', sans-serif;">Backup Solution</span>
+        </a>
+
         <!-- Desktop Nav -->
         <nav class="hidden sm:flex items-center space-x-2 sm:space-x-4">
             <div class="relative">
-                <button id="language-toggle-button" class="utility-button px-4 py-2 flex items-center gap-2"><span id="current-language-display"></span><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
-                <div id="language-dropdown" class="language-dropdown absolute right-0 mt-2 w-28 bg-white rounded-md shadow-lg hidden z-20">
-                    <a href="#" class="block px-4 py-2" data-lang="th">ภาษาไทย</a><a href="#" class="block px-4 py-2" data-lang="en">English</a>
+                <button id="language-toggle-button" class="utility-button px-4 py-2 flex items-center gap-2"><span
+                        id="current-language-display"></span><svg class="w-4 h-4" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg></button>
+                <div id="language-dropdown"
+                    class="language-dropdown absolute right-0 mt-2 w-28 bg-white rounded-md shadow-lg hidden z-20">
+                    <a href="#" class="block px-4 py-2" data-lang="th">ภาษาไทย</a><a href="#" class="block px-4 py-2"
+                        data-lang="en">English</a>
                 </div>
             </div>
             <button id="theme-toggle" class="utility-button">
-                <svg id="theme-icon-light" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                <svg id="theme-icon-dark" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                <svg id="theme-icon-light" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                    </path>
+                </svg>
+                <svg id="theme-icon-dark" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                    </path>
+                </svg>
             </button>
         </nav>
 
         <!-- Mobile Nav Button -->
         <div class="sm:hidden">
             <button id="mobile-menu-button" class="utility-button p-2">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                    </path>
+                </svg>
             </button>
         </div>
     </header>
@@ -67,25 +164,43 @@
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden fixed inset-0 z-40">
         <div class="fixed inset-0 bg-black bg-opacity-50" aria-hidden="true"></div>
-        <div id="mobile-menu-content" class="fixed top-0 right-0 w-64 h-full bg-yellow-50 dark:bg-gray-800 shadow-lg p-6 z-50 transform translate-x-full transition-transform duration-300 ease-in-out">
+        <div id="mobile-menu-content"
+            class="fixed top-0 right-0 w-64 h-full bg-yellow-50 dark:bg-gray-800 shadow-lg p-6 z-50 transform translate-x-full transition-transform duration-300 ease-in-out">
             <div class="flex justify-between items-center mb-8">
                 <h2 class="text-xl font-bold" data-i18n="menu"></h2>
-                <button id="mobile-menu-close-button" class="text-gray-500 hover:text-gray-800 dark:hover:text-white text-3xl">&times;</button>
+                <button id="mobile-menu-close-button"
+                    class="text-gray-500 hover:text-gray-800 dark:hover:text-white text-3xl">&times;</button>
             </div>
             <nav class="flex flex-col space-y-4">
                 <div class="relative">
-                    <button id="mobile-language-toggle-button" class="w-full utility-button px-4 py-2 flex items-center justify-between gap-2">
+                    <button id="mobile-language-toggle-button"
+                        class="w-full utility-button px-4 py-2 flex items-center justify-between gap-2">
                         <span id="mobile-current-language-display"></span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
                     </button>
-                    <div id="mobile-language-dropdown" class="language-dropdown absolute right-0 mt-2 w-full bg-white rounded-md shadow-lg hidden z-20">
+                    <div id="mobile-language-dropdown"
+                        class="language-dropdown absolute right-0 mt-2 w-full bg-white rounded-md shadow-lg hidden z-20">
                         <a href="#" class="block px-4 py-2" data-lang="th">ภาษาไทย</a>
                         <a href="#" class="block px-4 py-2" data-lang="en">English</a>
                     </div>
                 </div>
-                <button id="mobile-theme-toggle" class="w-full utility-button px-4 py-2 flex items-center justify-center gap-2">
-                    <svg id="mobile-theme-icon-light" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                    <svg id="mobile-theme-icon-dark" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                <button id="mobile-theme-toggle"
+                    class="w-full utility-button px-4 py-2 flex items-center justify-center gap-2">
+                    <svg id="mobile-theme-icon-light" class="w-6 h-6" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                        </path>
+                    </svg>
+                    <svg id="mobile-theme-icon-dark" class="w-6 h-6 hidden" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                        </path>
+                    </svg>
                 </button>
             </nav>
         </div>
@@ -97,35 +212,44 @@
                 <p data-i18n="loadingData">กำลังโหลดข้อมูล...</p>
             </div>
         </div>
-        <div id="error-message-container" class="max-w-3xl mx-auto mt-4 p-4 rounded-md text-center hidden bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-300"></div>
+        <div id="error-message-container"
+            class="max-w-3xl mx-auto mt-4 p-4 rounded-md text-center hidden bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-300">
+        </div>
     </main>
-    
+
     <footer>
         <div class="container mx-auto px-6 py-12">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
                 <div class="text-center md:text-left">
                     <h3 class="font-semibold mb-4 uppercase" data-i18n="contactSupport"></h3>
                     <ul class="space-y-2">
-                        <li><a data-i18n-link="contactUs" target="_blank" class="text-sm" data-i18n="contactUs"></a></li>
+                        <li><a data-i18n-link="contactUs" target="_blank" class="text-sm" data-i18n="contactUs"></a>
+                        </li>
                     </ul>
                 </div>
 
                 <div class="text-center md:text-left">
                     <h3 class="font-semibold mb-4 uppercase" data-i18n="legal"></h3>
                     <ul class="space-y-2">
-                        <li><a data-i18n-link="termsOfUse" target="_blank" class="text-sm" data-i18n="termsOfUse"></a></li>
-                        <li><a data-i18n-link="privacyNotice" target="_blank" class="text-sm" data-i18n="privacyNotice"></a></li>
-                        <li><a data-i18n-link="fraudAwareness" target="_blank" class="text-sm" data-i18n="fraudAwareness"></a></li>
-                        <li><a data-i18n-link="legalNotice" target="_blank" class="text-sm" data-i18n="legalNotice"></a></li>
+                        <li><a data-i18n-link="termsOfUse" target="_blank" class="text-sm" data-i18n="termsOfUse"></a>
+                        </li>
+                        <li><a data-i18n-link="privacyNotice" target="_blank" class="text-sm"
+                                data-i18n="privacyNotice"></a></li>
+                        <li><a data-i18n-link="fraudAwareness" target="_blank" class="text-sm"
+                                data-i18n="fraudAwareness"></a></li>
+                        <li><a data-i18n-link="legalNotice" target="_blank" class="text-sm" data-i18n="legalNotice"></a>
+                        </li>
                     </ul>
                 </div>
 
                 <div class="hidden md:block"></div>
 
-                <div class="col-span-2 md:col-span-1 text-center md:text-left flex flex-col items-center md:items-start">
+                <div
+                    class="col-span-2 md:col-span-1 text-center md:text-left flex flex-col items-center md:items-start">
                     <img src="DHL_logo_rgb_black.svg" alt="DHL Group Logo" class="h-6 mb-5">
                     <ul class="space-y-2">
-                        <li><a data-i18n-link="dhlExpress" target="_blank" class="text-sm" data-i18n="dhlExpress"></a></li>
+                        <li><a data-i18n-link="dhlExpress" target="_blank" class="text-sm" data-i18n="dhlExpress"></a>
+                        </li>
                         <li><a data-i18n-link="aboutDhl" target="_blank" class="text-sm" data-i18n="aboutDhl"></a></li>
                         <li><a data-i18n-link="press" target="_blank" class="text-sm" data-i18n="press"></a></li>
                     </ul>
@@ -139,19 +263,19 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-			if (sessionStorage.getItem('termsAccepted') !== 'true') {
+            if (sessionStorage.getItem('termsAccepted') !== 'true') {
                 window.location.href = 'index.html';
                 return;
             }
             const translations = {
-                'th': { 
+                'th': {
                     'confirmationTitle': 'สร้างใบนำส่งสำเร็จ!', 'confirmationSubtitle': 'ข้อมูลใบนำส่งสินค้าของคุณพร้อมสำหรับพิมพ์และดาวน์โหลด', 'awbLabel': 'หมายเลข AWB ของคุณคือ:', 'pickupNumberTitle': 'หมายเลขยืนยันการนัดรับสินค้า', 'downloadLabel': 'ดาวน์โหลดใบนำส่ง', 'downloadReceipt': 'ดาวน์โหลดใบสรุปการจัดส่ง', 'downloadInvoice': 'ดาวน์โหลดใบอินวอยซ์', 'pieceIdTitle': 'หมายเลข Piece ID', 'warningsTitle': 'คำเตือนจากระบบ', 'createNewShipment': 'สร้างใบนำส่งใหม่', 'backToMain': 'กลับหน้าหลัก', 'allRightsReserved': 'สงวนลิขสิทธิ์.', 'loadingData': 'กำลังโหลดข้อมูล...', 'noShipmentData': 'ไม่พบข้อมูลการจัดส่ง กรุณาสร้างใบนำส่งใหม่อีกครั้ง', 'downloadError': 'เกิดข้อผิดพลาดในการเตรียมไฟล์สำหรับดาวน์โหลด', 'downloadDisabled': 'ไฟล์นี้ไม่สามารถดาวน์โหลดได้', 'downloadLabelAndInvoice': 'ดาวน์โหลด Label และ Invoice',
                     'menu': 'เมนู', 'toggleTheme': 'เปลี่ยนธีม', 'contactSupport': 'ติดต่อและสอบถาม', 'contactUs': 'ติดต่อเรา', 'legal': 'ข้อมูลทางกฎหมาย', 'termsOfUse': 'ข้อกำหนดการใช้งาน', 'privacyNotice': 'ข้อความแจ้งเตือนความเป็นส่วนตัว', 'fraudAwareness': 'การตระหนักถึงการฉ้อโกง', 'legalNotice': 'ประกาศทางกฎหมาย', 'aboutDhl': 'เกี่ยวกับ DHL', 'press': 'ข่าวสาร', 'dhlExpress': 'DHL Express',
                     'links': {
                         'contactUs': 'https://www.dhl.com/th-th/home/customer-service.html', 'termsOfUse': 'https://www.dhl.com/th-th/home/footer/terms-of-use.html', 'privacyNotice': 'https://www.dhl.com/th-th/home/footer/privacy-notice.html', 'fraudAwareness': 'https://www.dhl.com/th-th/home/footer/fraud-awareness.html', 'legalNotice': 'https://www.dhl.com/th-th/home/footer/legal-notice.html', 'dhlExpress': 'https://www.dhl.com/th-th/home/express.html', 'aboutDhl': 'https://www.dhl.com/th-th/home/about-us.html', 'press': 'https://www.dhl.com/th-th/home/press.html'
                     }
                 },
-                'en': { 
+                'en': {
                     'confirmationTitle': 'Shipment Created Successfully!', 'confirmationSubtitle': 'Your shipment documents are ready to print and download.', 'awbLabel': 'Your AWB Number is:', 'pickupNumberTitle': 'Pickup Confirmation #', 'downloadLabel': 'Download Label', 'downloadReceipt': 'Download Receipt', 'downloadInvoice': 'Download Invoice', 'pieceIdTitle': 'Piece ID Numbers', 'warningsTitle': 'System Warnings', 'createNewShipment': 'Create New Shipment', 'backToMain': 'Back to Main', 'allRightsReserved': 'All rights reserved.', 'loadingData': 'Loading data...', 'noShipmentData': 'Shipment data not found. Please create a new shipment.', 'downloadError': 'Error preparing file for download', 'downloadDisabled': 'This file is not available for download', 'downloadLabelAndInvoice': 'Download Label & Invoice',
                     'menu': 'Menu', 'toggleTheme': 'Toggle Theme', 'contactSupport': 'CONTACT AND SUPPORT', 'contactUs': 'Contact Us', 'legal': 'LEGAL', 'termsOfUse': 'Terms of Use', 'privacyNotice': 'Privacy Notice', 'fraudAwareness': 'Fraud Awareness', 'legalNotice': 'Legal Notice', 'aboutDhl': 'About DHL', 'press': 'Press', 'dhlExpress': 'DHL Express',
                     'links': {
@@ -167,7 +291,7 @@
             const { PDFDocument } = PDFLib;
 
             function getTranslatedText(key) { return translations[currentLanguage]?.[key] || key; }
-            
+
             function updateContentLanguage() {
                 document.querySelectorAll('[data-i18n]').forEach(el => {
                     el.textContent = getTranslatedText(el.getAttribute('data-i18n'));
@@ -184,21 +308,21 @@
                 document.title = `DHL Backup Solution - ${getTranslatedText('confirmationTitle')}`;
                 const langDisplay = document.getElementById('current-language-display');
                 const mobileLangDisplay = document.getElementById('mobile-current-language-display');
-                if(langDisplay) langDisplay.textContent = currentLanguage.toUpperCase();
-                if(mobileLangDisplay) mobileLangDisplay.textContent = currentLanguage.toUpperCase();
+                if (langDisplay) langDisplay.textContent = currentLanguage.toUpperCase();
+                if (mobileLangDisplay) mobileLangDisplay.textContent = currentLanguage.toUpperCase();
             }
 
-            function setupTheme() { 
+            function setupTheme() {
                 const themeToggles = [document.getElementById('theme-toggle'), document.getElementById('mobile-theme-toggle')];
-                const lightIcon = document.getElementById('theme-icon-light'); 
+                const lightIcon = document.getElementById('theme-icon-light');
                 const darkIcon = document.getElementById('theme-icon-dark');
                 const mobileLightIcon = document.getElementById('mobile-theme-icon-light');
                 const mobileDarkIcon = document.getElementById('mobile-theme-icon-dark');
 
                 const toggle = () => document.body.classList.contains('dark-mode') ? disableDarkMode() : enableDarkMode();
-                const enableDarkMode = () => { document.body.classList.add('dark-mode'); localStorage.setItem('theme', 'dark'); if(lightIcon) lightIcon.classList.add('hidden'); if(darkIcon) darkIcon.classList.remove('hidden'); if(mobileLightIcon) mobileLightIcon.classList.add('hidden'); if(mobileDarkIcon) mobileDarkIcon.classList.remove('hidden'); }; 
-                const disableDarkMode = () => { document.body.classList.remove('dark-mode'); localStorage.setItem('theme', 'light'); if(lightIcon) lightIcon.classList.remove('hidden'); if(darkIcon) darkIcon.classList.add('hidden'); if(mobileLightIcon) mobileLightIcon.classList.remove('hidden'); if(mobileDarkIcon) mobileDarkIcon.classList.add('hidden'); }; 
-                
+                const enableDarkMode = () => { document.body.classList.add('dark-mode'); localStorage.setItem('theme', 'dark'); if (lightIcon) lightIcon.classList.add('hidden'); if (darkIcon) darkIcon.classList.remove('hidden'); if (mobileLightIcon) mobileLightIcon.classList.add('hidden'); if (mobileDarkIcon) mobileDarkIcon.classList.remove('hidden'); };
+                const disableDarkMode = () => { document.body.classList.remove('dark-mode'); localStorage.setItem('theme', 'light'); if (lightIcon) lightIcon.classList.remove('hidden'); if (darkIcon) darkIcon.classList.add('hidden'); if (mobileLightIcon) mobileLightIcon.classList.remove('hidden'); if (mobileDarkIcon) mobileDarkIcon.classList.add('hidden'); };
+
                 themeToggles.forEach(btn => btn && btn.addEventListener('click', toggle));
 
                 if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -208,25 +332,25 @@
                 }
             }
 
-            function setupLanguageSwitch() { 
+            function setupLanguageSwitch() {
                 const desktopBtn = document.getElementById('language-toggle-button');
                 const mobileBtn = document.getElementById('mobile-language-toggle-button');
                 const desktopDropdown = document.getElementById('language-dropdown');
                 const mobileDropdown = document.getElementById('mobile-language-dropdown');
 
-                if(desktopBtn) desktopBtn.addEventListener('click', () => desktopDropdown.classList.toggle('hidden')); 
-                if(mobileBtn) mobileBtn.addEventListener('click', () => mobileDropdown.classList.toggle('hidden')); 
+                if (desktopBtn) desktopBtn.addEventListener('click', () => desktopDropdown.classList.toggle('hidden'));
+                if (mobileBtn) mobileBtn.addEventListener('click', () => mobileDropdown.classList.toggle('hidden'));
 
-                document.querySelectorAll('[data-lang]').forEach(link => { 
-                    link.addEventListener('click', (e) => { 
-                        e.preventDefault(); 
-                        currentLanguage = e.target.dataset.lang; 
-                        localStorage.setItem('language', currentLanguage); 
-                        updateContentLanguage(); 
-                        if(desktopDropdown) desktopDropdown.classList.add('hidden'); 
-                        if(mobileDropdown) mobileDropdown.classList.add('hidden'); 
-                    }); 
-                }); 
+                document.querySelectorAll('[data-lang]').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        currentLanguage = e.target.dataset.lang;
+                        localStorage.setItem('language', currentLanguage);
+                        updateContentLanguage();
+                        if (desktopDropdown) desktopDropdown.classList.add('hidden');
+                        if (mobileDropdown) mobileDropdown.classList.add('hidden');
+                    });
+                });
             }
 
             function setupMobileMenu() {
@@ -264,14 +388,14 @@
                         const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
                         copiedPages.forEach((page) => mergedPdf.addPage(page));
                     } catch (e) {
-                         console.error("Failed to process a PDF for merging:", e);
+                        console.error("Failed to process a PDF for merging:", e);
                     }
                 }
                 return await mergedPdf.save();
             }
 
             async function renderConfirmationPage(data) {
-                
+
                 const needsToPrintAll = data.warnings?.some(w => w.startsWith('7988')) ?? false;
 
                 async function createDocumentLinks(documents) {
@@ -283,7 +407,7 @@
                         const labelDoc = documents.find(doc => doc.typeCode.toLowerCase() === 'waybilldoc' || doc.typeCode.toLowerCase() === 'label');
                         const invoiceDoc = documents.find(doc => doc.typeCode.toLowerCase() === 'invoice');
                         const receiptDoc = documents.find(doc => doc.typeCode.toLowerCase() === 'shipmentreceipt' || doc.typeCode.toLowerCase() === 'receipt');
-						
+
                         if (labelDoc && invoiceDoc) {
                             try {
                                 const mergedPdfBytes = await mergePdfs([labelDoc.content, invoiceDoc.content]);
@@ -304,8 +428,8 @@
                                 linksHtml += createSingleDocumentLink(invoiceDoc, awb);
                             }
                         } else {
-                             if(labelDoc) linksHtml += createSingleDocumentLink(labelDoc, awb);
-                             if(invoiceDoc) linksHtml += createSingleDocumentLink(invoiceDoc, awb);
+                            if (labelDoc) linksHtml += createSingleDocumentLink(labelDoc, awb);
+                            if (invoiceDoc) linksHtml += createSingleDocumentLink(invoiceDoc, awb);
                         }
 
                         if (receiptDoc) {
@@ -317,17 +441,17 @@
                             linksHtml += createSingleDocumentLink(doc, awb);
                         });
                     }
-                    
+
                     return linksHtml;
                 }
-                
+
                 function createSingleDocumentLink(doc, awb) {
                     if (!doc) return '';
-                    
+
                     const docType = doc.typeCode.toLowerCase();
                     let buttonTextKey = '', fileName = '', buttonClass = 'btn-gray', icon = '📄';
-                    
-                    switch(docType) {
+
+                    switch (docType) {
                         case 'waybilldoc': case 'label':
                             buttonTextKey = 'downloadLabel'; fileName = `${awb}_Label.pdf`; buttonClass = 'btn-red';
                             break;
@@ -339,7 +463,7 @@
                             break;
                         default: return '';
                     }
-                    
+
                     let href = '#';
                     let isDisabled = true;
                     if (doc.content) {
@@ -350,7 +474,7 @@
                                 byteNumbers[i] = byteCharacters.charCodeAt(i);
                             }
                             const byteArray = new Uint8Array(byteNumbers);
-                            const blob = new Blob([byteArray], {type: 'application/pdf'});
+                            const blob = new Blob([byteArray], { type: 'application/pdf' });
                             const blobUrl = URL.createObjectURL(blob);
                             blobUrls.push(blobUrl);
                             href = blobUrl;
@@ -359,7 +483,7 @@
                             console.error(`Failed to decode Base64 for ${fileName}:`, e);
                         }
                     }
-                    
+
                     return `
                         <a href="${href}" 
                            download="${fileName}" 
@@ -392,7 +516,7 @@
                     const items = packages.map(pkg => `<li class="confirmation-piece-id py-2 px-3 rounded-md font-mono text-sm">${pkg.trackingNumber}</li>`).join('');
                     return `<div class="mt-6 border-t pt-4 text-left"><h3 class="font-semibold text-lg mb-3">📦 <span data-i18n="pieceIdTitle"></span> (${packages.length})</h3><ul class="space-y-2">${items}</ul></div>`;
                 }
-                
+
                 function createWarningsSection(warnings) {
                     if (!warnings || warnings.length === 0) return '';
                     const filteredWarnings = warnings.filter(warn => !warn.includes('7987'));
@@ -400,7 +524,7 @@
                     const items = filteredWarnings.map(warn => `<li class="mt-1">${warn}</li>`).join('');
                     return `<div class="confirmation-warnings-box mb-6 text-left"><h3 class="warnings-title font-bold text-lg">⚠️ <span data-i18n="warningsTitle"></span></h3><div class="warnings-content mt-2 p-4 rounded-md text-sm"><ul class="list-disc pl-5">${items}</ul></div></div>`;
                 }
-                
+
                 const documentLinksHTML = await createDocumentLinks(data.documents);
 
                 const confirmationHTML = `
@@ -428,17 +552,17 @@
                         <button id="back-to-main-btn" class="btn-primary btn-gray"><span data-i18n="backToMain"></span></button>
                     </div>
                 `;
-                
+
                 confirmationContainer.innerHTML = confirmationHTML;
 
                 document.getElementById('create-new-btn').onclick = () => window.location.href = 'ship.html';
                 document.getElementById('back-to-main-btn').onclick = () => window.location.href = 'index.html';
-                
+
                 updateContentLanguage();
             }
 
             const responseDataString = sessionStorage.getItem('shipmentResponse');
-            
+
             if (responseDataString) {
                 try {
                     const data = JSON.parse(responseDataString);
@@ -464,5 +588,5 @@
         });
     </script>
 </body>
-</html>
 
+</html>

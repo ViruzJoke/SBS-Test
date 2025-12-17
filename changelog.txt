@@ -1,0 +1,40 @@
+Changelog: DHL Express Rebranding
+Date: 2025-12-17
+Project: Shipment Creation Backup Solution
+
+Visual Identity Update (Rebranding)
+Successfully transitioned the application from a generic "Shipment Creation" layout to a fully branded DHL Express interface.
+
+Key Changes:
+
+1. Color System Update
+- DHL Red (#D40511) replaced standard red-600.
+- DHL Yellow (#FFCC00) replaced standard yellow-400/amber-400.
+- DHL Dark Red (#AB000D) added for hover states.
+- Applied globally via Tailwind CSS configuration in all HTML files.
+
+2. Header & Navigation
+- Logo Integration: Replaced text-based headers with the official DHL_logo_rgb_black.svg.
+- Typography: Updated header text to use "Frutiger" (with Arial fallback) to match DHL brand guidelines.
+- Layout: Adjusted spacing and alignment to accommodate the new logo structure.
+
+3. Component Styling (styles.css)
+- Buttons:
+  - btn-red: Updated background color to DHL Red.
+  - btn-yellow: Updated background color to DHL Yellow with DHL Red text (high contrast).
+- Progress Steps: Active steps now use the official DHL Red.
+- Form Elements: Focus states for input fields now use DHL Red.
+- Dark Mode: Calibrated colors to ensure readability while maintaining brand identity (using DHL Yellow for accents in dark mode).
+
+4. File-Specific Updates
+- index.html: Updated landing page branding and "Consent" checkbox colors.
+- ship.html: Updated multi-step form progress indicators, "Next/Back" buttons, and checkbox accents.
+- quote.html: Updated "Get Quote" buttons and loading spinners.
+- confirmation.html: Updated success messages, AWB display, and download buttons.
+
+Verified Files:
+- index.html
+- ship.html
+- quote.html
+- confirmation.html
+- styles.css

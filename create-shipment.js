@@ -233,7 +233,7 @@ async function buildShipmentPayload() {
             console.error("Error encoding file to Base64:", error);
             const formMessage = document.getElementById('form-message');
             formMessage.textContent = "Could not process the uploaded file. Please try again.";
-            formMessage.className = 'p-4 rounded-md text-center bg-red-100 text-red-700 break-words';
+            formMessage.className = 'p-4 rounded-md text-center bg-red-100 text-dhl-red break-words font-bold';
             formMessage.classList.remove('hidden');
             return null;
         }
