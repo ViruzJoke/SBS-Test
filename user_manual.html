@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Manual - DHL Backup Solution</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #D40511;
+            border-bottom: 2px solid #FFCC00;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #D40511;
+            margin-top: 30px;
+        }
+
+        h3 {
+            color: #333;
+            border-left: 4px solid #FFCC00;
+            padding-left: 10px;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+
+        blockquote {
+            border-left: 4px solid #ccc;
+            margin: 10px 0;
+            padding-left: 15px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .note {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        img {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+            margin: 10px 0;
+        }
+
+        .fig-caption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>DHL Express Shipment Creation - Backup Solution <span style="font-size: 0.5em;">(Test Environment)</span></h1>
+    <p><strong>User Manual / คู่มือการใช้งาน</strong></p>
+    <p><strong>Version:</strong> 1.0<br><strong>Date:</strong> 2025-12-17</p>
+
+    <hr>
+
+    <h2>1. Introduction (บทนำ)</h2>
+    <p>This document provides a step-by-step guide for using the <strong>DHL Express Shipment Creation (Backup
+            Solution)</strong>. This tool allows you to create shipments, generate Air Waybills (AWB), and print
+        invoices manually during system maintenance.</p>
+    <p><strong>URL:</strong> <a href="https://sbs-e2e.vercel.app/" target="_blank">https://sbs-e2e.vercel.app/</a> (Test
+        Environment)</p>
+
+    <hr>
+
+    <h2>2. Getting Started (การเริ่มต้นใช้งาน)</h2>
+
+    <h3>2.1 Landing Page</h3>
+    <p>When you access the system, you will see the <strong>Home Page</strong>.</p>
+    <ol>
+        <li><strong>Language Selection</strong>: You can switch between <strong>Thai</strong> and
+            <strong>English</strong> using the flag/language icon in the top right corner.
+        </li>
+        <li><strong>Consent</strong>: You must check the box <strong>"I agree to the Terms of Use"</strong> to proceed.
+        </li>
+        <li><strong>Start</strong>: Click the <strong>"Create Shipment"</strong> (สร้างใบนำส่ง) button.</li>
+    </ol>
+
+    <div class="note">
+        <p><em>[Insert Screenshot Here: Figure 1 - Landing Page]</em></p>
+        <p class="fig-caption">Figure 1: The new landing page with DHL Yellow styling.</p>
+    </div>
+
+    <hr>
+
+    <h2>3. Creating a Shipment (ขั้นตอนการสร้างใบนำส่ง)</h2>
+
+    <p>The shipment creation process consists of <strong>4 Main Steps</strong>:</p>
+
+    <h3>Step 1: Shipment Details (ข้อมูลการจัดส่ง)</h3>
+    <ul>
+        <li><strong>Shipment Date</strong>: Select the date of shipment.</li>
+        <li><strong>Shipment Type</strong>: Choose between <strong>Documents</strong> (เอกสาร) or
+            <strong>Packages</strong> (พัสดุ).
+            <ul>
+                <li>If you select <em>Packages</em>, you will need to declare the <strong>Value</strong> and
+                    <strong>Currency</strong>.
+                </li>
+            </ul>
+        </li>
+        <li><strong>Payment</strong>: Select who pays for the shipping (Shipper or Receiver).</li>
+    </ul>
+
+    <h3>Step 2: Addresses (ที่อยู่)</h3>
+    <ul>
+        <li><strong>Shipper Details (ผู้ส่ง)</strong>:
+            <ul>
+                <li>Fill in Company/Name, Phone, and Full Address.</li>
+                <li><em>Tip:</em> The system auto-saves your shipper details for next time.</li>
+            </ul>
+        </li>
+        <li><strong>Receiver Details (ผู้รับ)</strong>:
+            <ul>
+                <li>Select <strong>Country</strong> first.</li>
+                <li>Enter Postal Code and City.</li>
+                <li>Fill in Company/Name and Phone.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <div class="note">
+        <p><em>[Insert Screenshot Here: Figure 2 - Address Form]</em></p>
+        <p class="fig-caption">Figure 2: Address input forms with validation.</p>
+    </div>
+
+    <h3>Step 3: Package Details (รายละเอียดพัสดุ)</h3>
+    <ul>
+        <li>Enter the <strong>Weight (kg)</strong> and <strong>Dimensions (L x W x H cm)</strong> for each piece.</li>
+        <li>You can add multiple pieces if needed.</li>
+        <li><strong>Description</strong>: Provide a clear description of the contents (e.g., "Spare Parts",
+            "Contracts").</li>
+    </ul>
+
+    <h3>Step 4: Summary & Services (สรุปและบริการเสริม)</h3>
+    <ul>
+        <li><strong>Protect Your Shipment</strong>: Check if you want to add insurance.</li>
+        <li><strong>Pickup</strong>: Toggle "Schedule a Pickup" if you need a courier to collect the shipment.</li>
+        <li>Review the <strong>Shipment Summary</strong> on the right side.</li>
+    </ul>
+
+    <hr>
+
+    <h2>4. Confirmation & Printing (การยืนยันและพิมพ์เอกสาร)</h2>
+
+    <p>Once you click <strong>"Confirm Shipment"</strong>, the system will generate your AWB.</p>
+
+    <h3>Success Screen</h3>
+    <p>You will see a confirmation page with:</p>
+    <ul>
+        <li><strong>AWB Number</strong>: Your tracking number (e.g., 1234567890).</li>
+        <li><strong>Download Buttons</strong>:
+            <ul>
+                <li><strong>Download Label</strong>: The AWB PDF.</li>
+                <li><strong>Download Invoice</strong>: The Commercial Invoice (if applicable).
+                <li><strong>Download Receipt</strong>: The shipment receipt.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <div class="note">
+        <p><em>[Insert Screenshot Here: Figure 3 - Confirmation Page]</em></p>
+        <p class="fig-caption">Figure 3: Success screen with download options.</p>
+    </div>
+
+    <h3>Printing Instructions</h3>
+    <ol>
+        <li>Click <strong>Download Label</strong>.</li>
+        <li>Open the PDF and print <strong>2 copies</strong> (one for the package, one for the courier).</li>
+        <li>Sign the invoice if required.</li>
+    </ol>
+
+    <hr>
+
+    <h2>5. Troubleshooting (การแก้ปัญหาเบื้องต้น)</h2>
+    <ul>
+        <li><strong>"Fill all fields" error</strong>: Check for any red boxes indicating missing information.</li>
+        <li><strong>Cannot click Next</strong>: Ensure the "Consent" box is checked or all required fields in the
+            current step are full.</li>
+        <li><strong>Clear Data</strong>: Use the "Clear History" button in the menu to reset the form.</li>
+    </ul>
+
+    <hr>
+    <p style="text-align: center; color: #666; margin-top: 50px;">&copy; 2025 DHL Express. All rights reserved.</p>
+
+</body>
+
+</html>

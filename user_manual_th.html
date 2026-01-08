@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คู่มือการใช้งาน - DHL Backup Solution (TH)</title>
+    <style>
+        body {
+            font-family: 'Sarabun', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #D40511;
+            border-bottom: 2px solid #FFCC00;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #D40511;
+            margin-top: 30px;
+        }
+
+        h3 {
+            color: #333;
+            border-left: 4px solid #FFCC00;
+            padding-left: 10px;
+        }
+
+        ul,
+        ol {
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .nav-links {
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+
+        .nav-links a {
+            color: #D40511;
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="nav-links">
+        <a href="user_manual_en.html">สลับไปหน้าภาษาอังกฤษ (English Version)</a>
+    </div>
+
+    <h1>DHL Express Shipment Creation - Backup Solution <span style="font-size: 0.5em;">(Test Environment)</span></h1>
+    <p><strong>คู่มือการใช้งาน (User Manual)</strong></p>
+    <p><strong>เวอร์ชัน:</strong> 2.0 (ปรับปรุงใหม่)<br><strong>วันที่:</strong> 2025-12-17</p>
+
+    <hr>
+
+    <h2>1. บทนำ (Introduction)</h2>
+    <p>เอกสารฉบับนี้เป็นคู่มือแนะนำการใช้งานระบบ <strong>DHL Express Shipment Creation (Backup Solution)</strong>
+        ซึ่งช่วยให้คุณสามารถสร้างใบนำส่งสินค้า (Shipment) ออกเลข AWB และพิมพ์เอกสารต่างๆ
+        ได้ด้วยตนเองในช่วงที่ระบบหลักปิดปรับปรุง</p>
+    <p><strong>ลิงก์เข้าระบบ:</strong> <a href="https://sbs-e2e.vercel.app/"
+            target="_blank">https://sbs-e2e.vercel.app/</a></p>
+
+    <hr>
+
+    <h2>2. การเริ่มต้นใช้งาน (Getting Started)</h2>
+    <ol>
+        <li><strong>เข้าสู่เว็บไซต์</strong>: เปิดลิงก์ด้านบน</li>
+        <li><strong>ยอมรับข้อตกลง</strong>: ติ๊กถูกที่ช่อง <strong>"ฉันยอมรับเงื่อนไขการใช้งาน"</strong></li>
+        <li><strong>เริ่มสร้างรายการ</strong>: คลิกปุ่ม <strong>"สร้างใบนำส่ง"</strong></li>
+    </ol>
+
+    <hr>
+
+    <h2>3. ขั้นตอนการสร้างใบนำส่ง (7 ขั้นตอน)</h2>
+
+    <h3>ขั้นตอนที่ 1: ที่อยู่ (Address)</h3>
+    <ul>
+        <li><strong>ผู้ส่ง (Shipper)</strong>: ตรวจสอบ ชื่อบริษัท, ชื่อผู้ส่ง, เบอร์โทร และที่อยู่ของท่าน</li>
+        <li><strong>ผู้รับ (Receiver)</strong>:
+            <ul>
+                <li><strong>เลือกประเทศปลายทาง</strong> เป็นอันดับแรก (สำคัญมาก)</li>
+                <li>กรอก <strong>รหัสไปรษณีย์</strong> และ <strong>เมือง</strong></li>
+                <li>กรอกข้อมูลติดต่อ (ชื่อบริษัท, ชื่อผู้รับ, เบอร์โทร, อีเมล)</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>ขั้นตอนที่ 2: รายละเอียดการจัดส่ง (Shipment Details)</h3>
+    <ul>
+        <li><strong>วันที่จัดส่ง</strong>: เลือกวันที่ที่ต้องการส่งสินค้า</li>
+        <li><strong>ประเภท</strong>: เลือก <strong>เอกสาร (Document)</strong> หรือ <strong>พัสดุ (Package)</strong></li>
+        <li><strong>ตัวเลือก Invoice</strong> (สำหรับพัสดุ):
+            <ul>
+                <li><em>สร้าง Invoice อัตโนมัติ</em>: ระบบจะสร้างไฟล์ให้</li>
+                <li><em>ใช้ไฟล์ Invoice ของฉันเอง</em>: คุณต้องอัปโหลดไฟล์เองในขั้นตอนที่ 5</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>ขั้นตอนที่ 3: รายละเอียดชิ้นงาน (Package Details)</h3>
+    <ul>
+        <li><strong>รายการสินค้า</strong>: ระบุรายละเอียดสินค้าในกล่อง (คำอธิบาย, จำนวน, มูลค่า)</li>
+        <li><strong>เพิ่มกล่อง/ซอง</strong>: ระบุ <strong>น้ำหนัก (กก.)</strong> และ <strong>ขนาด (ซม.)</strong>
+            ของแต่ละชิ้น</li>
+        <li><em>หมายเหตุ</em>: น้ำหนักรวมต้องสอดคล้องกับรายการสินค้าที่ระบุ</li>
+    </ul>
+
+    <h3>ขั้นตอนที่ 4: การชำระเงิน (Payment)</h3>
+    <ul>
+        <li><strong>บัญชีผู้ส่ง</strong>: ระบุเลขที่บัญชี DHL 9 หลักของคุณ</li>
+        <li><strong>เงื่อนไขการชำระ</strong>:
+            <ul>
+                <li><em>ผู้ส่งจ่าย (Shipper Pays)</em>: ต้นทางรับผิดชอบค่าขนส่ง</li>
+                <li><em>ผู้รับจ่าย (Receiver Pays)</em>: ปลายทางรับผิดชอบ (ต้องระบุเลขบัญชีผู้รับ)</li>
+            </ul>
+        </li>
+        <li><strong>Incoterm</strong>: เลือกเงื่อนไขการส่งมอบ (เช่น DAP, DDP)</li>
+    </ul>
+
+    <h3>ขั้นตอนที่ 5: เอกสาร (Documents)</h3>
+    <ul>
+        <li><strong>อัปโหลดไฟล์</strong>:
+            <ul>
+                <li>หากเลือก <em>ใช้ไฟล์ Invoice ของฉันเอง</em> ต้องอัปโหลดที่ขั้นตอนนี้</li>
+                <li>สามารถอัปโหลดใบอนุญาตหรือเอกสารอื่นๆ เพิ่มเติมได้</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>ขั้นตอนที่ 6: การรับสินค้า (Pickup)</h3>
+    <ul>
+        <li><strong>ต้องการรถรับสินค้าหรือไม่?</strong>
+            <ul>
+                <li><strong>ต้องการ (Yes)</strong>: ระบุ วันที่, ช่วงเวลา, จุดรับสินค้า (เช่น ล็อบบี้, โกดัง)
+                    และคำสั่งพิเศษ</li>
+                <li><strong>ไม่ต้องการ (No)</strong>: เลือกเมื่อคุณจะนำพัสดุไปส่งที่จุดบริการ DHL ด้วยตนเอง</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>ขั้นตอนที่ 7: สรุปและยืนยัน (Summary & Confirm)</h3>
+    <ul>
+        <li>ตรวจสอบความถูกต้องของข้อมูลทั้งหมด</li>
+        <li><strong>เลือกขนาดการพิมพ์</strong>:
+            <ul>
+                <li><strong>A4</strong>: สำหรับเครื่องพิมพ์เอกสารทั่วไป</li>
+                <li><strong>Label</strong>: สำหรับเครื่องพิมพ์สติ๊กเกอร์ความร้อน (4x6 นิ้ว)</li>
+            </ul>
+        </li>
+        <li>คลิกปุ่ม <strong>"ยืนยันการจัดส่ง" (Create Shipment)</strong> เพื่อจบรายการ</li>
+    </ul>
+
+    <hr>
+
+    <h2>4. การยืนยัน (Confirmation)</h2>
+    <p>เมื่อทำรายการสำเร็จ หน้าจอจะแสดง:</p>
+    <ul>
+        <li><strong>หมายเลข AWB</strong>: สำหรับเช็คสถานะพัสดุ</li>
+        <li><strong>ดาวน์โหลดและพิมพ์</strong>:
+            <ul>
+                <li><strong>Label (ใบปะหน้า)</strong>: ต้องพิมพ์และติดบนกล่อง</li>
+                <li><strong>Invoice (ใบอินวอยซ์)</strong>: พิมพ์ 2 ชุดสำหรับศุลกากร</li>
+                <li><strong>Receipt (ใบเสร็จ)</strong>: เก็บไว้เป็นหลักฐาน</li>
+            </ul>
+        </li>
+    </ul>
+
+    <hr>
+    <p style="text-align: center; color: #666; margin-top: 50px;">&copy; 2025 DHL Express. สงวนลิขสิทธิ์</p>
+
+</body>
+
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Manual - DHL Backup Solution (EN)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #D40511;
+            border-bottom: 2px solid #FFCC00;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #D40511;
+            margin-top: 30px;
+        }
+
+        h3 {
+            color: #333;
+            border-left: 4px solid #FFCC00;
+            padding-left: 10px;
+        }
+
+        ul,
+        ol {
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .nav-links {
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+
+        .nav-links a {
+            color: #D40511;
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="nav-links">
+        <a href="user_manual_th.html">Switch to Thai Version (ภาษาไทย)</a>
+    </div>
+
+    <h1>DHL Express Shipment Creation - Backup Solution <span style="font-size: 0.5em;">(Test Environment)</span></h1>
+    <p><strong>User Manual</strong></p>
+    <p><strong>Version:</strong> 2.0 (Revised)<br><strong>Date:</strong> 2025-12-17</p>
+
+    <hr>
+
+    <h2>1. Introduction</h2>
+    <p>This document provides a step-by-step guide for using the <strong>DHL Express Shipment Creation (Backup
+            Solution)</strong>. This tool ensures business continuity by allowing you to manually create shipments,
+        generate Air Waybills (AWB), and manage invoices during system maintenance windows.</p>
+    <p><strong>URL:</strong> <a href="https://sbs-e2e.vercel.app/" target="_blank">https://sbs-e2e.vercel.app/</a></p>
+
+    <hr>
+
+    <h2>2. Getting Started</h2>
+    <ol>
+        <li><strong>Access the Site</strong>: Open the URL in your browser.</li>
+        <li><strong>Consent</strong>: Check the <strong>"I agree to the Terms of Use"</strong> box.</li>
+        <li><strong>Start</strong>: Click <strong>"Create Shipment"</strong> button.</li>
+    </ol>
+
+    <hr>
+
+    <h2>3. Shipment Workflow (7 Steps)</h2>
+
+    <h3>Step 1: Address</h3>
+    <ul>
+        <li><strong>Shipper (Origin)</strong>: Verify your Name, Company, Phone, and Address.</li>
+        <li><strong>Receiver (Destination)</strong>:
+            <ul>
+                <li><strong>Select Country</strong> first to load specific validation rules for that destination.</li>
+                <li>Enter <strong>Postal Code</strong> and <strong>City</strong>.</li>
+                <li>Fill in <strong>Contact Details</strong> (Name, Company, Phone, Email).</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Step 2: Shipment Details</h3>
+    <ul>
+        <li><strong>Shipment Date</strong>: Choose the date you plan to ship.</li>
+        <li><strong>Type</strong>: Select <strong>Document</strong> or <strong>Package</strong>.</li>
+        <li><strong>Invoice Options</strong> (For Packages):
+            <ul>
+                <li><em>Create Invoice</em>: The system generates a digital invoice for you.</li>
+                <li><em>Use My Own</em>: You will upload your own invoice file in Step 5.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Step 3: Package Details</h3>
+    <ul>
+        <li><strong>Line Items</strong>: List the contents (Description, Qty, Value, Weight).</li>
+        <li><strong>Add Piece</strong>: Specify the <strong>Weight (kg)</strong> & <strong>Dimensions (cm)</strong> for
+            each box.</li>
+        <li><em>Note</em>: Ensure all items are declared correctly for customs.</li>
+    </ul>
+
+    <h3>Step 4: Payment</h3>
+    <ul>
+        <li><strong>Shipper Account</strong>: Enter your 9-digit DHL Account Number.</li>
+        <li><strong>Payment Terms</strong>:
+            <ul>
+                <li><em>Shipper Pays</em>: You pay.</li>
+                <li><em>Receiver Pays</em>: You must provide the Receiver's valid Account Number.</li>
+            </ul>
+        </li>
+        <li><strong>Incoterm</strong>: Select the term (e.g., DAP, DDP, EXW).</li>
+    </ul>
+
+    <h3>Step 5: Documents</h3>
+    <ul>
+        <li><strong>Uploads</strong>:
+            <ul>
+                <li>If you chose <em>Use My Own Invoice</em>, you must upload it here.</li>
+                <li>You can also upload other necessary documents (permits, licenses).</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Step 6: Pickup</h3>
+    <ul>
+        <li><strong>Schedule Pickup?</strong>
+            <ul>
+                <li><strong>Yes</strong>: Select Date, Time Window, Location (e.g. Reception), and Instructions.</li>
+                <li><strong>No</strong>: Choose this if you will drop off the package at a DHL Service Point yourself.
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Step 7: Summary & Confirm</h3>
+    <ul>
+        <li>Review all details in the summary card.</li>
+        <li><strong>Print Size</strong>: Select your preferred format:
+            <ul>
+                <li><strong>A4</strong>: For standard office printers.</li>
+                <li><strong>Label</strong>: For 4x6 thermal label printers.</li>
+            </ul>
+        </li>
+        <li>Click <strong>"Create Shipment"</strong> to finalize.</li>
+    </ul>
+
+    <hr>
+
+    <h2>4. Confirmation</h2>
+    <p>Upon success, you will see the confirmation screen:</p>
+    <ul>
+        <li><strong>AWB Number</strong>: Your tracking number.</li>
+        <li><strong>Download</strong>:
+            <ul>
+                <li><strong>Label</strong>: The shipping label (Required).</li>
+                <li><strong>Invoice</strong>: Customs invoice (Print 2 copies).</li>
+                <li><strong>Receipt</strong>: Proof of shipment.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <hr>
+    <p style="text-align: center; color: #666; margin-top: 50px;">&copy; 2025 DHL Express. All rights reserved.</p>
+
+</body>
+
+</html>
